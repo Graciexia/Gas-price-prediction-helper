@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Oil Prices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Daily oil price</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @oil_prices.each do |oil_price| %>
+      <tr>
+        <td><%= oil_price.daily_oil_price %></td>
+        <td><%= oil_price.date %></td>
+        <td><%= link_to 'Show', oil_price %></td>
+        <td><%= link_to 'Edit', edit_oil_price_path(oil_price) %></td>
+        <td><%= link_to 'Destroy', oil_price, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Oil price', new_oil_price_path %>

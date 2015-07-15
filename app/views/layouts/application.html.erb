@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GasPrediction</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>Gas&nbspHelper</h1>
+        </div>
+
+          <% if user_signed_in? %>
+          <div class="col-md-6 col-md-offset-7">
+            <p class="text-right" class: "btn btn-danger">
+            <%= link_to('Log out', destroy_user_session_path, :method => :delete) %>
+          </p>
+          <% else %>
+          <%= form_for(:user, :url => session_path(:user)) do |f| %>
+          <div class="col-md-6 col-md-offset-7">
+            <%= f.text_field :email %>
+            <%= f.password_field :password %>
+             <%= f.submit 'Log in',class: "btn btn-danger", redirect:new_session_path(resource_name)%><br>
+             <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <%= link_to "Forgot your password?", new_password_path(:user) %>
+             <%end%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </header>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+
+
+<%= yield %>
+
+</body>
+</html>

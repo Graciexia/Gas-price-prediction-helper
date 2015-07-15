@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel panel-header text-center">
+          <h5><strong>City:</strong><h5>
+        </div>
+        <p><%= @city_name %></p>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel panel-header text-center">
+          <h5><strong>Fuel type:</strong></h5>
+        </div>
+        <p><%= @car.gas_grade.grade_name %></p>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel panel-header text-center">
+          <h5><strong>Vehicle type:</strong></h5>
+        </div>
+        <p><%= @car.vehicle_type %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_car_path(@car) %> |
+<%= link_to 'Back', cars_path %>

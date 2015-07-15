@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6" style="font-size:20px;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif" class="wrapper">
+
+        <table>
+          <thead>
+            <tr>
+              <th>
+              <h4>Gas type: <%= @grade_name %></h4>
+              <h3>Predicted Gas Price: $<%= @pgp.round(3) %> /gallon</h3>
+              <h3>Percentage Change: <%= @gcpp.round(3) * 100 %>%</h3>
+              <h2><%= @message %></h2>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+              <tr>
+                Today's gas price is $<%= @cgp %> /gallon
+              </tr>
+          </tbody>
+        </table>
+
+        <br>
+    </div>
+  </div>
+<div>
+<%= link_to 'New Gas price', new_gas_price_path %>
+

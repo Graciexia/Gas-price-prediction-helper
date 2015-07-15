@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Daily oil price:</strong>
+  <%= @oil_price.daily_oil_price %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @oil_price.date %>
+</p>
+
+<%= link_to 'Edit', edit_oil_price_path(@oil_price) %> |
+<%= link_to 'Back', oil_prices_path %>

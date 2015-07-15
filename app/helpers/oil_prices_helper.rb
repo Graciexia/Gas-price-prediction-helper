@@ -1,0 +1,2 @@
+module OilPricesHelper
+end
