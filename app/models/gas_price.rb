@@ -5,7 +5,7 @@ class GasPrice < ActiveRecord::Base
   def self.update_gas_data(version = 0, versions_remaining = 30)
     # # Where is the data we are retreiving?
     full_url = 'https://www.kimonolabs.com/api/' + (version == 0 ? '' : version.to_s + '/')
-    full_url += API_CONFIG['kimono_gas_api'].to_s + '?apikey=' + API_CONFIG['kimono_apikey'].to_s
+    full_url += ENV['kimono_gas_api'].to_s + '?apikey=' + ENV['kimono_apikey'].to_s
     # full_url = 'https://www.kimonolabs.com/api/7ra9kcyg?apikey=BRTtRN28dLPpkNfi55ICIX5XqK4EZmgy'
     uri = URI.parse(full_url)
     http = Net::HTTP.new(uri.host, uri.port)

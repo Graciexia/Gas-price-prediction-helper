@@ -1,8 +1,8 @@
 class OilPrice < ActiveRecord::Base
   def self.update_oil_data
     # Where is the data we are retreiving?
-    full_url = 'https://www.kimonolabs.com/api/' + API_CONFIG['kimono_oil_api'].to_s +
-        '?apikey=' + API_CONFIG['kimono_apikey'].to_s
+    full_url = 'https://www.kimonolabs.com/api/' + ENV['kimono_oil_api'].to_s +
+        '?apikey=' + ENV['kimono_apikey'].to_s
     full_url = 'https://www.kimonolabs.com/api/7w55f0jm?apikey=BRTtRN28dLPpkNfi55ICIX5XqK4EZmgy'
     uri = URI.parse(full_url)
     http = Net::HTTP.new(uri.host, uri.port)
