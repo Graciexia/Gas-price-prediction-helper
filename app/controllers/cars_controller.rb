@@ -3,7 +3,14 @@ class CarsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @cars = Car.all
+    current_id = current_user.car_id
+    user_car = Car.find(current_id)
+    @city_mileage = user_car.city_mileage
+    @highway_mileage = user_car.highway_mileage
+    @comb_mileage = user_car.comb_mileage
+
+
+
   end
 
   def show

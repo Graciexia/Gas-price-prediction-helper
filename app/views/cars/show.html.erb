@@ -9,19 +9,37 @@
       </div>
       <div class="panel panel-default">
         <div class="panel panel-header text-center">
-          <h5><strong>Fuel type:</strong></h5>
+          <h5><strong>Year:</strong></h5>
         </div>
-        <p><%= @car.gas_grade.grade_name %></p>
+        <p><%= @car.year %></p>
       </div>
       <div class="panel panel-default">
         <div class="panel panel-header text-center">
-          <h5><strong>Vehicle type:</strong></h5>
+          <h5><strong>Make:</strong></h5>
         </div>
-        <p><%= @car.vehicle_type %></p>
+        <p><%= @car.make %></p>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel panel-header text-center">
+          <h5><strong>Model:</strong></h5>
+        </div>
+        <p><%= @car.model %></p>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel panel-header text-center">
+          <h5><strong>Transmission:</strong></h5>
+        </div>
+        <p><%= @car.trany %></p>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel panel-header text-center">
+          <h5><strong>Gas Grade:</strong></h5>
+        </div>
+        <p><%= @car.gas_grade %></p>
       </div>
     </div>
   </div>
 </div>
 
-<%= link_to 'Edit', edit_car_path(@car) %> |
-<%= link_to 'Back', cars_path %>
+<%= link_to 'Edit Your Car', new_car_path %>
+<%= link_to 'Back', gas_prices_path %>
