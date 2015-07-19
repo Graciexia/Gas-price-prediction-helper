@@ -14,7 +14,7 @@ class CarsController < ApplicationController
   end
 
   def show
-    current_id = current_user.cars.map {|x| x.id}.first
+    current_id = current_user.car_id
     @car = Car.find(current_id)
     @city_name = current_user.city.name
   end

@@ -24,6 +24,9 @@ gem 'devise', '~> 3.5.1'
 
 # gem 'whenever', :require => false
 gem 'whenever'
+gem 'chartkick'
+gem 'groupdate'
+gem 'font-awesome-sass'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc

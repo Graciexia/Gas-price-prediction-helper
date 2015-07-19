@@ -6,6 +6,9 @@ class OilPricesController < ApplicationController
   # GET /oil_prices.json
   def index
     @oil_prices = OilPrice.all
+    city_id = current_user.city_id
+    gas_grade_id = current_user.car.gas_grade_id
+    @gas_prices = GasPrice.where(city_id: city_id, gas_grade_id: gas_grade_id).select('date-2 as "date"', :gas_price)
   end
 
   # GET /oil_prices/1
@@ -62,7 +65,7 @@ class OilPricesController < ApplicationController
     end
   end
 
-  private
+                           private
     # Use callbacks to share common setup or constraints between actions.
     def set_oil_price
       @oil_price = OilPrice.find(params[:id])

@@ -1,6 +1,11 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 //You need to now manually import every other scss file.
+@import "cities.scss";
+
 header {
   background-color: #00B5A4;
 
@@ -9,15 +14,21 @@ header {
   border-bottom-color: rgb(0, 156, 141);
   color : white
 }
-.alert {
-  background-color:#ff5722;
-  color:black
-}
+
 .notice {
-  background-color:blue;
-  color:black
+  position:absolute;
+  width:100%;
+  color:black;
+  background-color:#ff5722;
+  text-align: center;
 }
 
+.alert {
+  width:100%;
+  height:20px;
+  color:red;
+  text-align: center;
+  }
 
 h2 {
   animation-duration: 3s;
@@ -35,6 +46,20 @@ h2 {
     width: 100%;
   }
 }
+
+.row {
+  display: table;
+  }
+
+[class*="col-"] {
+  float: none;
+  display: table-cell;
+  vertical-align: middle;
+  }
+.icon {
+  width: 50px;
+  height: 50px;
+  }
 
 .wrapper {
     -moz-transition: -moz-transform 1s ease-out, left 1s ease-out, right 1s ease-out, top 1s 1s ease-out, margin-top 1s 1s ease-out;
@@ -68,5 +93,3 @@ h2 {
         background-size: auto 50%;
     }
 }
-
-

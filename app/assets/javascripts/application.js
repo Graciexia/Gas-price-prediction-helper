@@ -19,3 +19,6 @@
 //= require components
 //= require_tree .
 
+$(function() {
+  $('.notice, .alert-text').delay(2000).fadeOut();
+});

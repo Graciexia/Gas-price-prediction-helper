@@ -5,7 +5,7 @@ class GasPricesController < ApplicationController
     city_id = current_user.city_id
     gas_grade_id = current_user.car.gas_grade_id
     @grade_name = current_user.car.gas_grade.grade_name
-    # abbrivation of gas_change_percentage_prediction, current_gas_price
+    # abbreviation of gas_change_percentage_prediction, current_gas_price
     @gcpp, @cgp = predict_gas_change(city_id, gas_grade_id)
     # to get the predition gas price
     @pgp = @cgp * (1.0 + @gcpp)
@@ -66,7 +66,7 @@ class GasPricesController < ApplicationController
     return (cur_gas_price - prev_gas_price) / prev_gas_price
   end
 
-# to get the predition method, set 7 days back of the changes
+# to get the predition method, set x days back of the changes
   def predict_gas_change(city_id, gas_grade_id)
     change_days = -7
     oil_change_percentage = get_oil_change_percentage(Date.today, change_days)
@@ -75,6 +75,7 @@ class GasPricesController < ApplicationController
       # when oil prices go up, gas prices quickly follow
       multiplier = 1.5
     else
+      # when oil prices go down, gas prices follow more slowly
       multiplier = 0.5
     end
     puts "oil change percentage = #{oil_change_percentage}"

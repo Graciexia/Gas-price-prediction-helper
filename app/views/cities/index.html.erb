@@ -1,12 +1,11 @@
-
-<div class="container">
+<div class="container city">
     <div class="row">
-      <div class="col-md-6" style="font-size:20px;font-family:RobotoDraft,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif">
-        <p></p><br>
-        <span><img className="GasStation" src="assets/gas_station.jpg" alt="GasStation" height="70" width="70">Choose the right day to buy your gas</span><br><br><br>
-        <span><img className="GasStation" src="assets/pump.jpg" alt="Pump" height="70" width="70">Choose the right day to buy your gas</span><br><br><br>
-        <span><img className="GasStation" src="assets/pump.jpg" alt="Pump" height="70" width="70">Choose the right day to buy your gas</span>
+      <div class="col-md-6" style="font-size:20px;color:white;font-family:RobotoDraft,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif">
+        <span><%=icon('line-chart faa-float animated ')%>&nbsp;Gas Price Prediction : Buy It Today Or Tomorrow</span><br><br><br><br/>
+        <span><%=icon('money faa-float animated ')%> Your Car's Mileage Cost</span><br><br><br><br/>
+        <span><%=icon('area-chart faa-float animated ')%>Price Trends Graph</span>
       </div>
+      <br />
       <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel panel-header text-center">
@@ -15,14 +14,14 @@
 
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= devise_error_messages! %>
-            <div class="field">
+            <div class="field" >
               <%= f.label :name %><br />
-              <%= f.text_field :name, autofocus: true %>
+              <%= f.text_field :name, autofocus: true %><br/><br/>
             </div>
 
             <div class="field">
               <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true %>
+              <%= f.email_field :email, autofocus: true %><br/><br/>
             </div>
 
             <div class="field">
@@ -30,17 +29,17 @@
               <% if @minimum_password_length %>
               <em>(<%= @minimum_password_length %> characters minimum)</em>
               <% end %><br />
-              <%= f.password_field :password, autocomplete: "off" %>
+              <%= f.password_field :password, autocomplete: "off" %><br/><br/>
             </div>
 
             <div class="field">
               <%= f.label :password_confirmation %><br />
-              <%= f.password_field :password_confirmation, autocomplete: "off" %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off" %><br /><br/>
             </div>
 
-            <div class="field">
+            <div class="form-group" align="center">
             <%= f.label :city%><br />
-            <%= f.select :city_id, city_dropdown, selected: params[:city_id], autofocus: true %><br /><br>
+            <%= f.select :city_id, city_dropdown, {selected: params[:city_id]}, {autofocus: true, class: "form-control", style: "width:50%"} %><br/>
             </div>
 
 

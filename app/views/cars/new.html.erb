@@ -1,37 +1,33 @@
-<div class='container new-room'>
+<div class='container new-car' style="border:30px solid lightseagreen">
   <div class="row">
     <div class='col-md-4 col-md-offset-4 form-box'>
       <h2>Build up your car profile</h2>
       <%= form_for(@car) do |f| %>
       <div class="field">
-        <%= f.label :gas_grade %><br />
-        <%= f.select :gas_grade_id, gas_grade_dropdown, selected: params[:gas_grade_id],autofocus: true %><br /><br />
-      </div>
-      <div class="field">
         <%= f.label :year %><br />
-        <%= f.select :year, @years, {selected: params[:year], prompt: 'Select year...'},{autofocus: true} %><br /><br />
+        <%= f.select :year, @years, {selected: params[:year], prompt: 'Select year...'},{autofocus: true, class: "form-control", style: "width:50%"} %><br />
       </div>
       <div class="field" >
         <%= f.label :make %><br />
-        <%= f.select :make, @makes, {selected: params[:make], prompt: 'Select make...'},{autofocus: true, :disabled => "disabled"} %><br /><br />
+        <%= f.select :make, @makes, {selected: params[:make], prompt: 'Select make...'},{autofocus: true, :disabled => "disabled",class: "form-control", style: "width:50%"} %><br />
       </div>
       <div class="field">
         <%= f.label :model %><br />
-        <%= f.select :model, @models, {selected: params[:model], prompt: 'Select model...'},{autofocus: true, :disabled => "disabled"} %><br /><br />
+        <%= f.select :model, @models, {selected: params[:model], prompt: 'Select model...'},{autofocus: true, :disabled => "disabled", class: "form-control", style: "width:50%"} %><br />
       </div>
       <div class="field">
         <%= f.label 'Transmission' %><br />
-        <%= f.select :trany, @tranies, {selected: params[:trany], prompt: 'Select transmission...'},{autofocus: true, :disabled => "disabled"} %><br /><br />
+        <%= f.select :trany, @tranies, {selected: params[:trany], prompt: 'Select transmission...'},{autofocus: true, :disabled => "disabled", class: "form-control", style: "width:50%"} %><br />
       </div>
       <div class="actions">
         <%= f.submit "Get Started", {class: "btn btn-primary", :id => 'car_submit', :disabled => "disabled"}%>
       </div>
+      <br />
       <%end%>
     </div>
   </div>
 </div>
 
-<%= link_to 'Back', cities_path %>
 
 <script>
   $(document).ready(function() {

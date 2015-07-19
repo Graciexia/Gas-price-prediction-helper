@@ -20,7 +20,7 @@ class GasPrice < ActiveRecord::Base
     # myfile.close
     # gas_data = JSON.parse(contents)
 
-    run_date = Date.parse(gas_data['thisversionrun'])
+    run_date = Date.parse(gas_data['thisversionrun']) - 1
     run_version = gas_data['version'].to_i
 
     gas_grades = GasGrade.all
