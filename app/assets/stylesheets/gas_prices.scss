@@ -1,3 +1,27 @@
 // Place all the styles related to the Gas_prices controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+h3 {
+  animation-duration: 3s;
+  animation-name: slidein;
+  }
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+    }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+    }
+  }
+.function {
+  background-color: #333333;
+  text-align: center;
+  }
+
+.dashboard {
+  position: absolute;
+  }

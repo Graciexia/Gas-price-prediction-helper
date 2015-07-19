@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707033755) do
+ActiveRecord::Schema.define(version: 20150719075631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20150707033755) do
   create_table "cars", force: :cascade do |t|
     t.integer  "city_mileage"
     t.integer  "comb_mileage"
-    t.string   "gas_grade"
     t.integer  "highway_mileage"
     t.string   "make"
     t.string   "model"

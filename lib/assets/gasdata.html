@@ -1,0 +1,746 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+  <head>
+    <script src="jquery.1.4.2.js"></script>
+    <script src="jquery.tablesorter.min.js"></script>
+    <script>
+      $.tablesorter.addParser({
+        id: 'chrono', // set a unique id
+        is: function(s) {
+          // return false so this parser is not auto detected
+          return false;
+        },
+        format: function(s) {
+          // format your data for normalization
+          return s.toLowerCase().replace(/current/, 1).replace(/yesterday/, 2).replace(/week/, 3).replace(/month/, 4).replace(/year/, 5);
+        },
+        // set type, either numeric or text
+        type: 'numeric'
+      });
+    </script>
+    <style>
+      h1, h2, h3, th, td, a, em {font-family: Helvetica,Arial,sans-serif;}
+      h1 {font-size: 18px;}
+      h2 {font-size: 15px;}
+      h3 {font-size: 12px;}
+      table {border-spacing: 0; width:450px;}
+      th {background-color: #0b5f71; padding:4px 0; color: #fff; font-size: 11px;}
+      td {color: #000; padding: 4px 0; font-size: 11px; text-align: right; border-bottom: 1px #ccc solid;}
+      th.price {width: 85px;}
+      td.price {text-align: center;}
+      td.state {text-align: left;}
+      th {cursor: pointer;}
+      a {color: #C22F0A; text-decoration: underline; font-size: 13px;}
+      a:hover {color:#c7442d;}
+      td a {font-size: 11px;}
+      em {font-size: 12px;}
+      table#states {width: 100%;}
+      table#country, table#country-max {width:99%;}
+      table#states th, table#states td, table#states td a {font-size: 13px;}
+      table thead tr th {
+        background-image: url(bg.gif);
+        background-repeat: no-repeat;
+        background-position: center right;
+        cursor: pointer;
+      }
+      table thead tr th.headerSortUp {
+        background-image: url(asc.gif);
+      }
+      table thead tr th.headerSortDown {
+        background-image: url(desc.gif);
+      }
+    </style>
+    <script type="text/javascript">
+    function resize_iframe() {
+      var ifr = window.parent.document.getElementById('fueldata-iframe');
+      ifr.style.height = ifr.contentWindow.document.body.scrollHeight + 'px';
+    }
+    function jump_to_hash() {
+      if(window.location.hash) {
+        window.location.href = window.location.hash;
+      }
+    }
+    </script>
+  </head>
+  <body onload="resize_iframe();">
+<div style="float:right;">
+<script type="text/javascript">
+               function change_metro() {
+                 var select_metro = document.getElementById("select_metro");
+                 var href = select_metro.options[select_metro.selectedIndex].value;
+                 if(href) {
+                   window.parent.document.location.href = href;
+                 }
+               }
+               </script>
+               <select id="select_metro" onchange="change_metro();">
+               <option value="">Select Market</option>
+<option value="/states/ohio/ohio-metro/">Akron - OH</option>
+<option value="/states/georgia/georgia-metro/">Albany - GA</option>
+<option value="/states/new-york/new-york-metro/">Albany-Schenectady-Troy - NY</option>
+<option value="/states/new-mexico/new-mexico-metro/">Albuquerque - NM</option>
+<option value="/states/pennsylvania/pennsylvania-metro/">Allentown-Bethlehem-Easton - PA</option>
+<option value="/states/texas/texas-metro/">Amarillo - TX</option>
+<option value="/states/alaska/alaska-metro/">Anchorage - AK</option>
+<option value="/states/michigan/michigan-metro/">Ann Arbor - MI</option>
+<option value="/states/north-carolina/north-carolina-metro/">Asheville - NC</option>
+<option value="/states/georgia/georgia-metro/">Athens - GA</option>
+<option value="/states/georgia/georgia-metro/">Atlanta - GA</option>
+<option value="/states/new-jersey/new-jersey-metro/">Atlantic-Cape May - NJ</option>
+<option value="/states/georgia/georgia-metro/">Augusta-Aiken (GA only) - GA</option>
+<option value="/states/texas/texas-metro/">Austin-San Marcos - TX</option>
+<option value="/states/california/california-metro/">Bakersfield - CA</option>
+<option value="/states/maryland/maryland-metro/">Baltimore - MD</option>
+<option value="/states/maine/maine-metro/">Bangor - ME</option>
+<option value="/states/massachusetts/massachusetts-metro/">Barnstable-Yarmouth - MA</option>
+<option value="/states/louisiana/louisiana-metro/">Baton Rouge - LA</option>
+<option value="/states/texas/texas-metro/">Beaumont-Port Arthur - TX</option>
+<option value="/states/washington/washington-metro/">Bellingham - WA</option>
+<option value="/states/michigan/michigan-metro/">Benton Harbor - MI</option>
+<option value="/states/new-jersey/new-jersey-metro/">Bergen-Passaic - NJ</option>
+<option value="/states/montana/montana-metro/">Billings - MT</option>
+<option value="/states/mississippi/mississippi-metro/">Biloxi-Gulfport-Pascagoula - MS</option>
+<option value="/states/new-york/new-york-metro/">Binghamton - NY</option>
+<option value="/states/alabama/alabama-metro/">Birmingham - AL</option>
+<option value="/states/north-dakota/north-dakota-metro/">Bismarck - ND</option>
+<option value="/states/indiana/indiana-metro/">Bloomington - IN</option>
+<option value="/states/illinois/illinois-metro/">Bloomington-Normal - IL</option>
+<option value="/states/idaho/idaho-metro/">Boise City - ID</option>
+<option value="/states/massachusetts/massachusetts-metro/">Boston (MA only) - MA</option>
+<option value="/states/colorado/colorado-metro/">Boulder-Longmont - CO</option>
+<option value="/states/florida/florida-metro/">Bradenton-Sarasota-Venice - FL</option>
+<option value="/states/washington/washington-metro/">Bremerton - WA</option>
+<option value="/states/connecticut/connecticut-metro/">Bridgeport - CT</option>
+<option value="/states/new-york/new-york-metro/">Buffalo-Niagara Falls - NY</option>
+<option value="/states/vermont/vermont-metro/">Burlington - VT</option>
+<option value="/states/ohio/ohio-metro/">Canton-Massillon - OH</option>
+<option value="/states/wyoming/wyoming-metro/">Casper - WY</option>
+<option value="/states/iowa/iowa-metro/">Cedar Rapids - IA</option>
+<option value="/states/illinois/illinois-metro/">Champaign-Urbana - IL</option>
+<option value="/states/west-virginia/west-virginia-metro/">Charleston - WV</option>
+<option value="/states/south-carolina/south-carolina-metro/">Charleston-North Charleston - SC</option>
+<option value="/states/north-carolina/north-carolina-metro/">Charlotte-Gastonia-Rock Hill (NC only) - NC</option>
+<option value="/states/virginia/virginia-metro/">Charlottesville - VA</option>
+<option value="/states/tennessee/tennessee-metro/">Chattanooga (TN only) - TN</option>
+<option value="/states/wyoming/wyoming-metro/">Cheyenne - WY</option>
+<option value="/states/illinois/illinois-metro/">Chicago Metro - IL</option>
+<option value="/states/california/california-metro/">Chico-Paradise - CA</option>
+<option value="/states/ohio/ohio-metro/">Cincinnati (OH only) - OH</option>
+<option value="/states/illinois/illinois-metro/">City of Chicago - IL</option>
+<option value="/states/tennessee/tennessee-metro/">Clarksville-Hopkinsville (TN only) - TN</option>
+<option value="/states/ohio/ohio-metro/">Cleveland-Lorain-Elyria - OH</option>
+<option value="/states/idaho/idaho-metro/">Coeur D' Alene - ID</option>
+<option value="/states/colorado/colorado-metro/">Colorado Springs - CO</option>
+<option value="/states/missouri/missouri-metro/">Columbia - MO</option>
+<option value="/states/south-carolina/south-carolina-metro/">Columbia - SC</option>
+<option value="/states/nebraska/nebraska-metro/">Columbus - NE</option>
+<option value="/states/ohio/ohio-metro/">Columbus - OH</option>
+<option value="/states/georgia/georgia-metro/">Columbus (GA only) - GA</option>
+<option value="/states/texas/texas-metro/">Corpus Christi - TX</option>
+<option value="/states/kentucky/kentucky-metro/">Covington - KY</option>
+<option value="/states/maryland/maryland-metro/">Cumberland (MD Only) - MD</option>
+<option value="/states/texas/texas-metro/">Dallas - TX</option>
+<option value="/states/illinois/illinois-metro/">Danville - IL</option>
+<option value="/states/iowa/iowa-metro/">Davenport-Moline-Rock Island (IA only) - IA</option>
+<option value="/states/illinois/illinois-metro/">Davenport-Moline-Rock Island (IL only) - IL</option>
+<option value="/states/ohio/ohio-metro/">Dayton-Springfield - OH</option>
+<option value="/states/florida/florida-metro/">Daytona Beach - FL</option>
+<option value="/states/illinois/illinois-metro/">Decatur - IL</option>
+<option value="/states/colorado/colorado-metro/">Denver - CO</option>
+<option value="/states/iowa/iowa-metro/">Des Moines - IA</option>
+<option value="/states/michigan/michigan-metro/">Detroit - MI</option>
+<option value="/states/delaware/delaware-metro/">Dover - DE</option>
+<option value="/states/minnesota/minnesota-metro/">Duluth-Superior (MN only) - MN</option>
+<option value="/states/colorado/colorado-metro/">Durango - CO</option>
+<option value="/states/illinois/illinois-metro/">East Saint Louis - IL</option>
+<option value="/states/arizona/arizona-metro/">East Valley - AZ</option>
+<option value="/states/wisconsin/wisconsin-metro/">Eau Claire - WI</option>
+<option value="/states/texas/texas-metro/">El Paso - TX</option>
+<option value="/states/pennsylvania/pennsylvania-metro/">Erie - PA</option>
+<option value="/states/oregon/oregon-metro/">Eugene-Springfield - OR</option>
+<option value="/states/indiana/indiana-metro/">Evansville-Henderson (IN only) - IN</option>
+<option value="/states/alaska/alaska-metro/">Fairbanks - AK</option>
+<option value="/states/north-dakota/north-dakota-metro/">Fargo-Moorhead (ND only) - ND</option>
+<option value="/states/north-carolina/north-carolina-metro/">Fayetteville - NC</option>
+<option value="/states/arkansas/arkansas-metro/">Fayetteville-Springdale-Rogers - AR</option>
+<option value="/states/arizona/arizona-metro/">Flagstaff - AZ</option>
+<option value="/states/michigan/michigan-metro/">Flint - MI</option>
+<option value="/states/colorado/colorado-metro/">Fort Collins-Loveland - CO</option>
+<option value="/states/florida/florida-metro/">Fort Lauderdale - FL</option>
+<option value="/states/florida/florida-metro/">Fort Myers-Cape Coral - FL</option>
+<option value="/states/arkansas/arkansas-metro/">Fort Smith (AR only) - AR</option>
+<option value="/states/indiana/indiana-metro/">Fort Wayne - IN</option>
+<option value="/states/texas/texas-metro/">Fort Worth-Arlington - TX</option>
+<option value="/states/california/california-metro/">Fresno - CA</option>
+<option value="/states/florida/florida-metro/">Gainesville - FL</option>
+<option value="/states/texas/texas-metro/">Galveston-Texas City - TX</option>
+<option value="/states/indiana/indiana-metro/">Gary - IN</option>
+<option value="/states/arizona/arizona-metro/">Glendale - AZ</option>
+<option value="/states/colorado/colorado-metro/">Glenwood Springs - CO</option>
+<option value="/states/north-dakota/north-dakota-metro/">Grand Forks (ND only) - ND</option>
+<option value="/states/nebraska/nebraska-metro/">Grand Island - NE</option>
+<option value="/states/colorado/colorado-metro/">Grand Junction (CO only) - CO</option>
+<option value="/states/michigan/michigan-metro/">Grand Rapids-Muskegon-Holland - MI</option>
+<option value="/states/montana/montana-metro/">Great Falls - MT</option>
+<option value="/states/colorado/colorado-metro/">Greeley - CO</option>
+<option value="/states/wisconsin/wisconsin-metro/">Green Bay - WI</option>
+<option value="/states/north-carolina/north-carolina-metro/">Greensboro--Winston-Salem--High Point - NC</option>
+<option value="/states/south-carolina/south-carolina-metro/">Greenville-Spartanburg-Anderson - SC</option>
+<option value="/states/maryland/maryland-metro/">Hagerstown - MD</option>
+<option value="/states/pennsylvania/pennsylvania-metro/">Harrisburg-Lebanon-Carlisle - PA</option>
+<option value="/states/connecticut/connecticut-metro/">Hartford - CT</option>
+<option value="/states/hawaii/hawaii-metro/">Hilo - HI</option>
+<option value="/states/hawaii/hawaii-metro/">Honolulu - HI</option>
+<option value="/states/texas/texas-metro/">Houston - TX</option>
+<option value="/states/kentucky/kentucky-metro/">Huntington-Ashland (KY only) - KY</option>
+<option value="/states/west-virginia/west-virginia-metro/">Huntington-Ashland (WV only) - WV</option>
+<option value="/states/alabama/alabama-metro/">Huntsville - AL</option>
+<option value="/states/indiana/indiana-metro/">Indianapolis - IN</option>
+<option value="/states/michigan/michigan-metro/">Jackson - MI</option>
+<option value="/states/mississippi/mississippi-metro/">Jackson - MS</option>
+<option value="/states/florida/florida-metro/">Jacksonville - FL</option>
+<option value="/states/wisconsin/wisconsin-metro/">Janesville-Beloit - WI</option>
+<option value="/states/tennessee/tennessee-metro/">Johnson City-Kingsport-Bristol (TN only) - TN</option>
+<option value="/states/alaska/alaska-metro/">Juneau - AK</option>
+<option value="/states/kansas/kansas-metro/">Kansas City (KS only) - KS</option>
+<option value="/states/missouri/missouri-metro/">Kansas City (MO only) - MO</option>
+<option value="/states/nebraska/nebraska-metro/">Kearney - NE</option>
+<option value="/states/tennessee/tennessee-metro/">Knoxville - TN</option>
+<option value="/states/wisconsin/wisconsin-metro/">La Crosse (WI only) - WI</option>
+<option value="/states/louisiana/louisiana-metro/">Lafayette - LA</option>
+<option value="/states/louisiana/louisiana-metro/">Lake Charles - LA</option>
+<option value="/states/pennsylvania/pennsylvania-metro/">Lancaster - PA</option>
+<option value="/states/michigan/michigan-metro/">Lansing-East Lansing - MI</option>
+<option value="/states/new-mexico/new-mexico-metro/">Las Cruces - NM</option>
+<option value="/states/nevada/nevada-metro/">Las Vegas (NV only) - NV</option>
+<option value="/states/kansas/kansas-metro/">Lawrence - KS</option>
+<option value="/states/maine/maine-metro/">Lewiston-Auburn - ME</option>
+<option value="/states/kentucky/kentucky-metro/">Lexington - KY</option>
+<option value="/states/nebraska/nebraska-metro/">Lincoln - NE</option>
+<option value="/states/arkansas/arkansas-metro/">Little Rock-North Little Rock - AR</option>
+<option value="/states/california/california-metro/">Los Angeles-Long Beach - CA</option>
+<option value="/states/kentucky/kentucky-metro/">Louisville (KY only) - KY</option>
+<option value="/states/georgia/georgia-metro/">Macon - GA</option>
+<option value="/states/wisconsin/wisconsin-metro/">Madison - WI</option>
+<option value="/states/new-hampshire/new-hampshire-metro/">Manchester - NH</option>
+<option value="/states/michigan/michigan-metro/">Marquette - MI</option>
+<option value="/states/oregon/oregon-metro/">Medford-Ashland - OR</option>
+<option value="/states/tennessee/tennessee-metro/">Memphis (TN only) - TN</option>
+<option value="/states/california/california-metro/">Merced - CA</option>
+<option value="/states/florida/florida-metro/">Miami - FL</option>
+<option value="/states/new-jersey/new-jersey-metro/">Middlesex-Somerset-Hunterdon - NJ</option>
+<option value="/states/wisconsin/wisconsin-metro/">Milwaukee-Waukesha - WI</option>
+<option value="/states/minnesota/minnesota-metro/">Minneapolis-St. Paul (MN only) - MN</option>
+<option value="/states/montana/montana-metro/">Missoula - MT</option>
+<option value="/states/alabama/alabama-metro/">Mobile - AL</option>
+<option value="/states/california/california-metro/">Modesto - CA</option>
+<option value="/states/new-jersey/new-jersey-metro/">Monmouth-Ocean - NJ</option>
+<option value="/states/alabama/alabama-metro/">Montgomery - AL</option>
+<option value="/states/south-carolina/south-carolina-metro/">Myrtle Beach - SC</option>
+<option value="/states/tennessee/tennessee-metro/">Nashville - TN</option>
+<option value="/states/new-york/new-york-metro/">Nassau-Suffolk - NY</option>
+<option value="/states/connecticut/connecticut-metro/">New Haven-Meriden - CT</option>
+<option value="/states/connecticut/connecticut-metro/">New London-Norwich (CT only) - CT</option>
+<option value="/states/louisiana/louisiana-metro/">New Orleans - LA</option>
+<option value="/states/new-york/new-york-metro/">New York - NY</option>
+<option value="/states/new-jersey/new-jersey-metro/">Newark - NJ</option>
+<option value="/states/nebraska/nebraska-metro/">Norfolk - NE</option>
+<option value="/states/virginia/virginia-metro/">Norfolk-Virginia Beach-Newport News - VA</option>
+<option value="/states/nebraska/nebraska-metro/">North Platte - NE</option>
+<option value="/states/california/california-metro/">Oakland - CA</option>
+<option value="/states/oklahoma/oklahoma-metro/">Oklahoma City - OK</option>
+<option value="/states/washington/washington-metro/">Olympia - WA</option>
+<option value="/states/nebraska/nebraska-metro/">Omaha (NE only) - NE</option>
+<option value="/states/california/california-metro/">Orange County - CA</option>
+<option value="/states/florida/florida-metro/">Orlando - FL</option>
+<option value="/states/kentucky/kentucky-metro/">Owensboro - KY</option>
+<option value="/states/west-virginia/west-virginia-metro/">Parkersburg-Marietta (WV only) - WV</option>
+<option value="/states/florida/florida-metro/">Pensacola - FL</option>
+<option value="/states/arizona/arizona-metro/">Peoria - AZ</option>
+<option value="/states/illinois/illinois-metro/">Peoria-Pekin - IL</option>
+<option value="/states/new-jersey/new-jersey-metro/">Philadelphia (NJ Only) - NJ</option>
+<option value="/states/pennsylvania/pennsylvania-metro/">Philadelphia (PA only) - PA</option>
+<option value="/states/arizona/arizona-metro/">Phoenix Proper - AZ</option>
+<option value="/states/arizona/arizona-metro/">Phoenix-Mesa - AZ</option>
+<option value="/states/arizona/arizona-metro/">Pima County - AZ</option>
+<option value="/states/arkansas/arkansas-metro/">Pine Bluff - AR</option>
+<option value="/states/pennsylvania/pennsylvania-metro/">Pittsburgh - PA</option>
+<option value="/states/massachusetts/massachusetts-metro/">Pittsfield - MA</option>
+<option value="/states/idaho/idaho-metro/">Pocatello - ID</option>
+<option value="/states/maine/maine-metro/">Portland - ME</option>
+<option value="/states/oregon/oregon-metro/">Portland-Vancouver (OR only) - OR</option>
+<option value="/states/new-hampshire/new-hampshire-metro/">Portsmouth-Rochester (NH only) - NH</option>
+<option value="/states/arizona/arizona-metro/">Prescott - AZ</option>
+<option value="/states/rhode-island/rhode-island-metro/">Providence-Fall River-Warwick (RI only) - RI</option>
+<option value="/states/utah/utah-metro/">Provo-Orem - UT</option>
+<option value="/states/colorado/colorado-metro/">Pueblo - CO</option>
+<option value="/states/illinois/illinois-metro/">Quincy - IL</option>
+<option value="/states/north-carolina/north-carolina-metro/">Raleigh-Durham-Chapel Hill - NC</option>
+<option value="/states/south-dakota/south-dakota-metro/">Rapid City - SD</option>
+<option value="/states/pennsylvania/pennsylvania-metro/">Reading - PA</option>
+<option value="/states/california/california-metro/">Redding - CA</option>
+<option value="/states/nevada/nevada-metro/">Reno - NV</option>
+<option value="/states/washington/washington-metro/">Richland-Kennewick-Pasco - WA</option>
+<option value="/states/virginia/virginia-metro/">Richmond-Petersburg - VA</option>
+<option value="/states/california/california-metro/">Riverside-San Bernardino - CA</option>
+<option value="/states/virginia/virginia-metro/">Roanoke - VA</option>
+<option value="/states/minnesota/minnesota-metro/">Rochester - MN</option>
+<option value="/states/new-york/new-york-metro/">Rochester - NY</option>
+<option value="/states/illinois/illinois-metro/">Rockford - IL</option>
+<option value="/states/california/california-metro/">Sacramento - CA</option>
+<option value="/states/michigan/michigan-metro/">Saginaw-Bay City-Midland - MI</option>
+<option value="/states/oregon/oregon-metro/">Salem - OR</option>
+<option value="/states/california/california-metro/">Salinas - CA</option>
+<option value="/states/maryland/maryland-metro/">Salisbury - MD</option>
+<option value="/states/utah/utah-metro/">Salt Lake City-Ogden - UT</option>
+<option value="/states/texas/texas-metro/">San Antonio - TX</option>
+<option value="/states/california/california-metro/">San Diego - CA</option>
+<option value="/states/california/california-metro/">San Francisco - CA</option>
+<option value="/states/california/california-metro/">San Jose - CA</option>
+<option value="/states/california/california-metro/">San Luis Obispo-Atascadero-Paso Robles - CA</option>
+<option value="/states/california/california-metro/">Santa Barbara-Santa Maria-Lompoc - CA</option>
+<option value="/states/california/california-metro/">Santa Cruz-Watsonville - CA</option>
+<option value="/states/new-mexico/new-mexico-metro/">Santa Fe - NM</option>
+<option value="/states/california/california-metro/">Santa Rosa - CA</option>
+<option value="/states/georgia/georgia-metro/">Savannah - GA</option>
+<option value="/states/arizona/arizona-metro/">Scottsdale - AZ</option>
+<option value="/states/pennsylvania/pennsylvania-metro/">Scranton--Wilkes-Barre--Hazleton - PA</option>
+<option value="/states/washington/washington-metro/">Seattle-Bellevue-Everett - WA</option>
+<option value="/states/louisiana/louisiana-metro/">Shreveport-Bossier City - LA</option>
+<option value="/states/iowa/iowa-metro/">Sioux City (IA only) - IA</option>
+<option value="/states/south-dakota/south-dakota-metro/">Sioux Falls - SD</option>
+<option value="/states/indiana/indiana-metro/">South Bend - IN</option>
+<option value="/states/washington/washington-metro/">Spokane - WA</option>
+<option value="/states/illinois/illinois-metro/">Springfield - IL</option>
+<option value="/states/massachusetts/massachusetts-metro/">Springfield - MA</option>
+<option value="/states/missouri/missouri-metro/">Springfield - MO</option>
+<option value="/states/minnesota/minnesota-metro/">St. Cloud - MN</option>
+<option value="/states/missouri/missouri-metro/">St. Joseph - MO</option>
+<option value="/states/missouri/missouri-metro/">St. Louis (MO only) - MO</option>
+<option value="/states/west-virginia/west-virginia-metro/">Steubenville-Weirton (WV only) - WV</option>
+<option value="/states/california/california-metro/">Stockton-Lodi - CA</option>
+<option value="/states/new-york/new-york-metro/">Syracuse - NY</option>
+<option value="/states/washington/washington-metro/">Tacoma - WA</option>
+<option value="/states/florida/florida-metro/">Tallahassee - FL</option>
+<option value="/states/florida/florida-metro/">Tampa-St. Petersburg-Clearwater - FL</option>
+<option value="/states/indiana/indiana-metro/">Terre Haute - IN</option>
+<option value="/states/arkansas/arkansas-metro/">Texarkana (AR only) - AR</option>
+<option value="/states/texas/texas-metro/">Texarkana (TX only) - TX</option>
+<option value="/states/ohio/ohio-metro/">Toledo - OH</option>
+<option value="/states/kansas/kansas-metro/">Topeka - KS</option>
+<option value="/states/michigan/michigan-metro/">Traverse City - MI</option>
+<option value="/states/new-jersey/new-jersey-metro/">Trenton - NJ</option>
+<option value="/states/arizona/arizona-metro/">Tucson - AZ</option>
+<option value="/states/oklahoma/oklahoma-metro/">Tulsa - OK</option>
+<option value="/states/alabama/alabama-metro/">Tuscaloosa - AL</option>
+<option value="/states/new-york/new-york-metro/">Utica-Rome - NY</option>
+<option value="/states/colorado/colorado-metro/">Vail - CO</option>
+<option value="/states/georgia/georgia-metro/">Valdosta - GA</option>
+<option value="/states/california/california-metro/">Vallejo-Fairfield-Napa - CA</option>
+<option value="/states/washington/washington-metro/">Vancouver - WA</option>
+<option value="/states/california/california-metro/">Ventura - CA</option>
+<option value="/states/california/california-metro/">Visalia-Tulare-Porterville - CA</option>
+<option value="/states/hawaii/hawaii-metro/">Wailuku - HI</option>
+<option value="/states/district-of-columbia/district-of-columbia-metro/">Washington (DC only) - DC</option>
+<option value="/states/district-of-columbia/district-of-columbia-metro/">Washington (Entire Metro Average) - DC</option>
+<option value="/states/maryland/maryland-metro/">Washington (MD only) - MD</option>
+<option value="/states/iowa/iowa-metro/">Waterloo-Cedar Falls - IA</option>
+<option value="/states/florida/florida-metro/">West Palm Beach-Boca Raton - FL</option>
+<option value="/states/arizona/arizona-metro/">West Valley - AZ</option>
+<option value="/states/west-virginia/west-virginia-metro/">Wheeling (WV only) - WV</option>
+<option value="/states/kansas/kansas-metro/">Wichita - KS</option>
+<option value="/states/north-carolina/north-carolina-metro/">Wilmington - NC</option>
+<option value="/states/delaware/delaware-metro/">Wilmington-Newark (DE only) - DE</option>
+<option value="/states/washington/washington-metro/">Yakima - WA</option>
+<option value="/states/california/california-metro/">Yolo - CA</option>
+<option value="/states/pennsylvania/pennsylvania-metro/">York - PA</option>
+<option value="/states/ohio/ohio-metro/">Youngstown-Warren - OH</option>
+<option value="/states/california/california-metro/">Yuba City - CA</option>
+<option value="/states/arizona/arizona-metro/">Yuma - AZ</option></select>
+</div>
+<h1>Alabama Metro Averages</h1>
+<em>*Prices Are In US Dollars Per Gallon</em><br>
+<em>Prices updated as of 7/19/2015 3:45am</em><h2>Birmingham                                        </h2>
+<a name="birmingham"></a>
+<table class="metro">
+<thead>
+  <tr>
+    <th>&nbsp;</th>
+    <th class="price">Regular</th>
+    <th class="price">Mid</th>
+    <th class="price">Premium</th>
+    <th class="price">Diesel</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Current</td>
+    <td class="price">$2.410</td>
+    <td class="price">$2.673</td>
+    <td class="price">$2.935</td>
+    <td class="price">$2.776</td>
+  </tr>
+  <tr>
+    <td>Yesterday</td>
+    <td class="price">$2.416</td>
+    <td class="price">$2.673</td>
+    <td class="price">$2.939</td>
+    <td class="price">$2.771</td>
+  </tr>
+  <tr>
+    <td>Week Ago</td>
+    <td class="price">$2.467</td>
+    <td class="price">$2.707</td>
+    <td class="price">$2.968</td>
+    <td class="price">$2.809</td>
+  </tr>
+  <tr>
+    <td>Month Ago</td>
+    <td class="price">$2.552</td>
+    <td class="price">$2.762</td>
+    <td class="price">$3.007</td>
+    <td class="price">$2.819</td>
+  </tr>
+  <tr>
+    <td>Year Ago</td>
+    <td class="price">$3.373</td>
+    <td class="price">$3.604</td>
+    <td class="price">$3.814</td>
+    <td class="price">$3.758</td>
+  </tr>
+</tbody>
+</table>
+
+<h3>Highest Recorded Average Price</h3>
+<table class="metro-max">
+<thead>
+  <tr>
+    <th>&nbsp;</th>
+    <th class="price">Price</th>
+    <th class="price">Date</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Regular Unl.</td>
+    <td class="price">$4.054</td>
+    <td class="price">9/15/2008</td>
+  </tr>
+  <tr>
+    <td>DSL.</td>
+    <td class="price">$4.770</td>
+    <td class="price">7/17/2008</td>
+  </tr>
+</tbody>
+</table>
+<br><br>
+<h2>Huntsville                                        </h2>
+<a name="huntsville"></a>
+<table class="metro">
+<thead>
+  <tr>
+    <th>&nbsp;</th>
+    <th class="price">Regular</th>
+    <th class="price">Mid</th>
+    <th class="price">Premium</th>
+    <th class="price">Diesel</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Current</td>
+    <td class="price">$2.438</td>
+    <td class="price">$2.687</td>
+    <td class="price">$2.915</td>
+    <td class="price">$2.839</td>
+  </tr>
+  <tr>
+    <td>Yesterday</td>
+    <td class="price">$2.444</td>
+    <td class="price">$2.687</td>
+    <td class="price">$2.922</td>
+    <td class="price">$2.851</td>
+  </tr>
+  <tr>
+    <td>Week Ago</td>
+    <td class="price">$2.482</td>
+    <td class="price">$2.711</td>
+    <td class="price">$2.934</td>
+    <td class="price">$2.868</td>
+  </tr>
+  <tr>
+    <td>Month Ago</td>
+    <td class="price">$2.541</td>
+    <td class="price">$2.752</td>
+    <td class="price">$2.971</td>
+    <td class="price">$2.905</td>
+  </tr>
+  <tr>
+    <td>Year Ago</td>
+    <td class="price">$3.349</td>
+    <td class="price">$3.552</td>
+    <td class="price">$3.764</td>
+    <td class="price">$3.773</td>
+  </tr>
+</tbody>
+</table>
+
+<h3>Highest Recorded Average Price</h3>
+<table class="metro-max">
+<thead>
+  <tr>
+    <th>&nbsp;</th>
+    <th class="price">Price</th>
+    <th class="price">Date</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Regular Unl.</td>
+    <td class="price">$4.125</td>
+    <td class="price">9/16/2008</td>
+  </tr>
+  <tr>
+    <td>DSL.</td>
+    <td class="price">$4.877</td>
+    <td class="price">7/21/2008</td>
+  </tr>
+</tbody>
+</table>
+<br><br>
+<h2>Mobile                                            </h2>
+<a name="mobile"></a>
+<table class="metro">
+<thead>
+  <tr>
+    <th>&nbsp;</th>
+    <th class="price">Regular</th>
+    <th class="price">Mid</th>
+    <th class="price">Premium</th>
+    <th class="price">Diesel</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Current</td>
+    <td class="price">$2.455</td>
+    <td class="price">$2.716</td>
+    <td class="price">$2.936</td>
+    <td class="price">$2.693</td>
+  </tr>
+  <tr>
+    <td>Yesterday</td>
+    <td class="price">$2.457</td>
+    <td class="price">$2.719</td>
+    <td class="price">$2.934</td>
+    <td class="price">$2.712</td>
+  </tr>
+  <tr>
+    <td>Week Ago</td>
+    <td class="price">$2.504</td>
+    <td class="price">$2.754</td>
+    <td class="price">$2.955</td>
+    <td class="price">$2.735</td>
+  </tr>
+  <tr>
+    <td>Month Ago</td>
+    <td class="price">$2.570</td>
+    <td class="price">$2.786</td>
+    <td class="price">$2.981</td>
+    <td class="price">$2.762</td>
+  </tr>
+  <tr>
+    <td>Year Ago</td>
+    <td class="price">$3.360</td>
+    <td class="price">$3.591</td>
+    <td class="price">$3.762</td>
+    <td class="price">$3.751</td>
+  </tr>
+</tbody>
+</table>
+
+<h3>Highest Recorded Average Price</h3>
+<table class="metro-max">
+<thead>
+  <tr>
+    <th>&nbsp;</th>
+    <th class="price">Price</th>
+    <th class="price">Date</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Regular Unl.</td>
+    <td class="price">$3.992</td>
+    <td class="price">7/17/2008</td>
+  </tr>
+  <tr>
+    <td>DSL.</td>
+    <td class="price">$4.775</td>
+    <td class="price">7/17/2008</td>
+  </tr>
+</tbody>
+</table>
+<br><br>
+<h2>Montgomery                                        </h2>
+<a name="montgomery"></a>
+<table class="metro">
+<thead>
+  <tr>
+    <th>&nbsp;</th>
+    <th class="price">Regular</th>
+    <th class="price">Mid</th>
+    <th class="price">Premium</th>
+    <th class="price">Diesel</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Current</td>
+    <td class="price">$2.377</td>
+    <td class="price">$2.644</td>
+    <td class="price">$2.901</td>
+    <td class="price">$2.698</td>
+  </tr>
+  <tr>
+    <td>Yesterday</td>
+    <td class="price">$2.395</td>
+    <td class="price">$2.655</td>
+    <td class="price">$2.919</td>
+    <td class="price">$2.699</td>
+  </tr>
+  <tr>
+    <td>Week Ago</td>
+    <td class="price">$2.448</td>
+    <td class="price">$2.694</td>
+    <td class="price">$2.944</td>
+    <td class="price">$2.709</td>
+  </tr>
+  <tr>
+    <td>Month Ago</td>
+    <td class="price">$2.566</td>
+    <td class="price">$2.783</td>
+    <td class="price">$3.030</td>
+    <td class="price">$2.725</td>
+  </tr>
+  <tr>
+    <td>Year Ago</td>
+    <td class="price">$3.252</td>
+    <td class="price">$3.507</td>
+    <td class="price">$3.744</td>
+    <td class="price">$3.734</td>
+  </tr>
+</tbody>
+</table>
+
+<h3>Highest Recorded Average Price</h3>
+<table class="metro-max">
+<thead>
+  <tr>
+    <th>&nbsp;</th>
+    <th class="price">Price</th>
+    <th class="price">Date</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Regular Unl.</td>
+    <td class="price">$4.080</td>
+    <td class="price">9/17/2008</td>
+  </tr>
+  <tr>
+    <td>DSL.</td>
+    <td class="price">$4.786</td>
+    <td class="price">7/16/2008</td>
+  </tr>
+</tbody>
+</table>
+<br><br>
+<h2>Tuscaloosa                                        </h2>
+<a name="tuscaloosa"></a>
+<table class="metro">
+<thead>
+  <tr>
+    <th>&nbsp;</th>
+    <th class="price">Regular</th>
+    <th class="price">Mid</th>
+    <th class="price">Premium</th>
+    <th class="price">Diesel</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Current</td>
+    <td class="price">$2.366</td>
+    <td class="price">$2.616</td>
+    <td class="price">$2.870</td>
+    <td class="price">$2.694</td>
+  </tr>
+  <tr>
+    <td>Yesterday</td>
+    <td class="price">$2.367</td>
+    <td class="price">$2.622</td>
+    <td class="price">$2.864</td>
+    <td class="price">$2.685</td>
+  </tr>
+  <tr>
+    <td>Week Ago</td>
+    <td class="price">$2.416</td>
+    <td class="price">$2.644</td>
+    <td class="price">$2.904</td>
+    <td class="price">$2.698</td>
+  </tr>
+  <tr>
+    <td>Month Ago</td>
+    <td class="price">$2.495</td>
+    <td class="price">$2.723</td>
+    <td class="price">$2.950</td>
+    <td class="price">$2.726</td>
+  </tr>
+  <tr>
+    <td>Year Ago</td>
+    <td class="price">$3.316</td>
+    <td class="price">$3.562</td>
+    <td class="price">$3.737</td>
+    <td class="price">$3.744</td>
+  </tr>
+</tbody>
+</table>
+
+<h3>Highest Recorded Average Price</h3>
+<table class="metro-max">
+<thead>
+  <tr>
+    <th>&nbsp;</th>
+    <th class="price">Price</th>
+    <th class="price">Date</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Regular Unl.</td>
+    <td class="price">$4.122</td>
+    <td class="price">9/15/2008</td>
+  </tr>
+  <tr>
+    <td>DSL.</td>
+    <td class="price">$4.778</td>
+    <td class="price">7/16/2008</td>
+  </tr>
+</tbody>
+</table>
+<br><br>
+
+<script>
+$(document).ready(function() {
+  $('.metro').tablesorter({
+    header: {0: {sorter: 'chrono'}}
+  });
+  $('.metro-max').tablesorter({
+    headers: {0: {sorter: false}}
+  });
+});
+</script>
+
+  </body>
+</html>

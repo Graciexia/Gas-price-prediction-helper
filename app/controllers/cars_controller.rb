@@ -8,9 +8,6 @@ class CarsController < ApplicationController
     @city_mileage = user_car.city_mileage
     @highway_mileage = user_car.highway_mileage
     @comb_mileage = user_car.comb_mileage
-
-
-
   end
 
   def show

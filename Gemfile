@@ -27,6 +27,7 @@ gem 'whenever'
 gem 'chartkick'
 gem 'groupdate'
 gem 'font-awesome-sass'
+gem 'nokogiri'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc

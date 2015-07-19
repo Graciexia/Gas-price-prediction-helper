@@ -8,7 +8,7 @@ class OilPricesController < ApplicationController
     @oil_prices = OilPrice.all
     city_id = current_user.city_id
     gas_grade_id = current_user.car.gas_grade_id
-    @gas_prices = GasPrice.where(city_id: city_id, gas_grade_id: gas_grade_id).select('date-2 as "date"', :gas_price)
+    @gas_prices = GasPrice.where(city_id: city_id, gas_grade_id: gas_grade_id).select('date as "date"', :gas_price)
   end
 
   # GET /oil_prices/1

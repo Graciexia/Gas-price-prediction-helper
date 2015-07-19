@@ -17,6 +17,7 @@
 //= require react
 //= require react_ujs
 //= require components
+//= require jquery.transit.min
 //= require_tree .
 
 $(function() {

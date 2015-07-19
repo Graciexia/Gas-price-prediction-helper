@@ -5,6 +5,7 @@
 
 //You need to now manually import every other scss file.
 @import "cities.scss";
+@import "gas_prices.scss";
 
 header {
   background-color: #00B5A4;
@@ -30,22 +31,7 @@ header {
   text-align: center;
   }
 
-h2 {
-  animation-duration: 3s;
-  animation-name: slidein;
-}
 
-@keyframes slidein {
-  from {
-    margin-left: 100%;
-    width: 300%;
-  }
-
-  to {
-    margin-left: 0%;
-    width: 100%;
-  }
-}
 
 .row {
   display: table;
