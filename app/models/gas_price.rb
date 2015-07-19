@@ -2,7 +2,7 @@ class GasPrice < ActiveRecord::Base
   belongs_to :city
   belongs_to :gas_grade
 
-  def self.K_update_gas_data(version = 0, versions_remaining = 30)
+  def self.k_update_gas_data(version = 0, versions_remaining = 30)
     # Where is the data we are retrieving?
     full_url = 'https://www.kimonolabs.com/api/' + (version == 0 ? '' : version.to_s + '/')
     full_url += ENV['kimono_gas_api'].to_s + '?apikey=' + ENV['kimono_apikey'].to_s
@@ -45,7 +45,7 @@ class GasPrice < ActiveRecord::Base
     gas_price_count = GasPrice.where(date: previous_run_date).count
     previous_run_version = run_version - 1
     if gas_price_count == 0 && versions_remaining > 0 && previous_run_version > 0
-      GasPrice.K_update_gas_data(previous_run_version, versions_remaining)
+      GasPrice.k_update_gas_data(previous_run_version, versions_remaining)
     end
   end
 
