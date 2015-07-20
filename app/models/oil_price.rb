@@ -1,5 +1,5 @@
 class OilPrice < ActiveRecord::Base
-  def self.update_oil_data
+  def self.k_update_oil_data
     # Where is the data we are retreiving?
     full_url = 'https://www.kimonolabs.com/api/' + ENV['kimono_oil_api'].to_s +
         '?apikey=' + ENV['kimono_apikey'].to_s
@@ -12,11 +12,6 @@ class OilPrice < ActiveRecord::Base
     response = http.request(request)
     oil_data = JSON.parse(response.body)
 
-    # myfile = File.open("lib/assets/oildata.json", "rb")
-    # contents = myfile.read
-    # myfile.close
-    # oil_data = JSON.parse(contents)
-
     prices_array = oil_data['results']['collection1']
     prices_array.each do |x|
       get_date = x['Date']
@@ -26,4 +21,18 @@ class OilPrice < ActiveRecord::Base
     puts 'Oil Data updated at ' + Time.now.to_s + "; Kimono pulled this data on #{oil_data['thisversionrun']} (#{oil_data['version']})"
   end
 
+  def self.my_update_oil_data()
+    url = 'http://finance.yahoo.com/q/hp?s=%5EXOI+Historical+Prices'
+    puts 'Using my_update_oil_data to crawl all recent oil prices.'
+    doc = Nokogiri::HTML(open(url))
+
+    dates_css = doc.css('.yfnc_tabledata1:nth-child(1)')
+    closing_prices_css = doc.css('.yfnc_tabledata1:nth-child(5)')
+    count = closing_prices_css.count
+    (0...count).each do |index|
+      get_price = closing_prices_css[index].text.gsub(/[^\d\.]/,'').to_f
+      get_date = dates_css[index].text
+      OilPrice.find_or_create_by(oil_price: get_price, date: get_date)
+    end
+  end
 end

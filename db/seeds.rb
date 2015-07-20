@@ -1,7 +1,7 @@
 require 'CSV'
 
 ["Regular","Midgrade","Premium"].each do |type|
-  GasGrade.create(grade_name: type)
+  GasGrade.find_or_create_by(grade_name: type)
 end
 
 CSV.foreach("lib/assets/vehicles_short.csv") do |row|
@@ -25,6 +25,10 @@ CSV.foreach("lib/assets/vehicles_short.csv") do |row|
       )
 end
 
+GasPrice.k_update_gas_data
+GasPrice.my_update_gas_data
+OilPrice.k_update_oil_data
+
 cities =  City.all
 cars = Car.all
 20.times do
@@ -36,7 +40,3 @@ cars = Car.all
       city_id: cities.sample.id,
       car_id: cars.sample.id)
 end
-
-
-
-

@@ -1,26 +1,15 @@
 every 1.day, :at => '4:30 am' do
-  runner "GasPrice.update_gas_data", environment: 'development'
-  runner "OilPrice.update_oil_data", environment: 'development'
+  runner "GasPrice.k_update_gas_data", environment: 'development'
 end
 
-# every 1.day, :at => '4:30 am' do
-#   runner "MyModel.task_to_run_at_four_thirty_in_the_morning"
-# end
+every 1.day, :at => '4:45 am' do
+  runner "GasPrice.my_update_gas_data", environment: 'development'
+end
 
-# every :hour do # Many shortcuts available: :hour, :day, :month, :year, :reboot
-#   runner "SomeModel.ladeeda"
-# end
+every 1.day, :at => '4:50 am' do
+  runner "OilPrice.k_update_oil_data", environment: 'development'
+end
 
-# every :sunday, :at => '12pm' do # Use any day of the week or :weekend, :weekday
-#   runner "Task.do_something_great"
-# end
-
-# every '0 0 27-31 * *' do
-#   command "echo 'you can use raw cron syntax too'"
-# end
-
-# # run this task only on servers with the :app role in Capistrano
-# # see Capistrano roles section below
-# every :day, :at => '12:20am', :roles => [:app] do
-#   rake "app_server:task"
-# end
+every 1.day, :at => '4:55 am' do
+  runner "OilPrice.my_update_oil_data", environment: 'development'
+end

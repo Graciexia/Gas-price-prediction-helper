@@ -51,11 +51,10 @@ class GasPrice < ActiveRecord::Base
 
   def self.my_update_gas_data()
     base_url = 'http://fuelgaugereport.aaa.com/import/display.php?lt=metro&ls='
-
+    puts 'Using my_update_gas_data to crawl current and yesterday\'s gas prices.'
     File.open('lib/assets/CrawlStates.txt', 'r') do |f|
       f.each_line do |state|
         state_abbr = state.strip
-        puts 'Processing state: ' + state_abbr
         url = base_url + state_abbr
         doc = Nokogiri::HTML(open(url))
         # doc = Nokogiri::HTML(File.open('lib/assets/gasdata.html', 'rb'))
