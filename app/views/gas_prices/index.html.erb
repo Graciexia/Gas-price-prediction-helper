@@ -2,10 +2,10 @@
     <div id=dashboard1 class="panel panel-default dashboard" hidden="hidden">
       <div class="panel-body">
         <div style="vertical-align: middle" align="center">
-            <h4>Gas type: <%= @grade_name %></h4>
-            <h4>Predicted Gas Price: $<%= @pgp.round(3) %> /gallon</h4>
-            <h4>Percentage Change: <%= @gcpp.round(3) * 100 %>%</h4>
-            <h4>Today's gas price is $<%= @cgp %> /gallon</h4>
+            <h4><small>Gas type:</small> <%= @grade_name %></h4>
+            <h4><small>Predicted Gas Price:</small> $<%= @pgp.round(3) %> /gallon</h4>
+            <h4><small>Percentage Change:</small> <%= @gcpp.round(3) * 100 %>%</h4>
+            <h4><small>Today's gas price is</small> $<%= @cgp %> /gallon</h4>
         </div>
       </div>
     </div>

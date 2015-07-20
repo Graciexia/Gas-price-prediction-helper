@@ -4,6 +4,7 @@ class GasPricesController < ApplicationController
   def index
     city_id = current_user.city_id
     gas_grade_id = current_user.car.gas_grade_id
+    @user_city = current_user.city.name
     @grade_name = current_user.car.gas_grade.grade_name
     # abbreviation of gas_change_percentage_prediction, current_gas_price
     @gcpp, @cgp = predict_gas_change(city_id, gas_grade_id)

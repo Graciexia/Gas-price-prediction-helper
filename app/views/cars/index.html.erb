@@ -1,28 +1,144 @@
 
 
-<h1>Cost Caculater</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 align="center">Cost Calculator</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" align="center">
+      <div class="input-group input-group-lg">
+          <span class="input-group-addon" id="sizing-addon3">Miles</span>
+          <input id="miles" type="text" class="form-control" placeholder="Enter some miles..." aria-describedby="sizing-addon3">
+      </div>
+      <br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Your Car - <%= @car_name %></h3>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Gas Grade</th>
+                <th>Combined</th>
+                <th>City</th>
+                <th>Highway</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= @grade_name %></td>
+                <td><%= @comb_mileage %> m/gal</td>
+                <td><%= @city_mileage %> m/gal</td>
+                <td><%= @highway_mileage %> m/gal</td>
+              </tr>
+              <tr>
+                <td>$<%= @user_gas_price.round(2) %>/gal</td>
+                <td id="comb_cost">$0.00</td>
+                <td id="city_cost">$0.00</td>
+                <td id="highway_cost">$0.00</td>
+              </tr>
+             </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">Gas Sipper - 2014 Mazda 3 (5-Door)</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Car</th>
+              <th>Gas Grade</th>
+              <th>Combined</th>
+              <th>City</th>
+              <th>Highway</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td rowspan="2"><%= image_tag('2014mazda3.jpg', height: "100px", alt: "2014 Mazda 3") %></td>
+              <td>Regular</td>
+              <td>33 m/gal</td>
+              <td>30 m/gal</td>
+              <td>40 m/gal</td>
+            </tr>
+            <tr>
+              <td>$<%= @sipper_gas_price.round(2) %>/gal</td>
+              <td id="comb_cost1">$0.00</td>
+              <td id="city_cost1">$0.00</td>
+              <td id="highway_cost1">$0.00</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title">Gas Guzzler - 2014 Bugatti Veyron</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Car</th>
+              <th>Gas Grade</th>
+              <th>Combined</th>
+              <th>City</th>
+              <th>Highway</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td rowspan="2"><%= image_tag('2014bugatti.jpg', height: "100px", alt: "2014 Bugatti Veyon") %></td>
+              <td>Premium</td>
+              <td>10 m/gal</td>
+              <td>8 m/gal</td>
+              <td>15 m/gal</td>
+            </tr>
+            <tr>
+              <td>$<%= @guzzler_gas_price.round(2) %>/gal</td>
+              <td id="comb_cost2">$0.00</td>
+              <td id="city_cost2">$0.00</td>
+              <td id="highway_cost2">$0.00</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Combination Mileage Cost</th>
-      <th>City Mileage Cost</th>
-      <th>Highway Mileage Cost</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-
-      <tr>
-        <td><%=    @comb_mileage %></td>
-        <td><%=    @city_mileage %></td>
-        <td><%=    @highway_mileage %></td>
-        <td><%= link_to 'Your Car Profile', cars_path(@car) %></td>
-      </tr>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'Back to Gas Price', gas_prices_path %>
+<script>
+  function dollar_format(price) {
+      return price.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+  }
+  $('#miles').keyup(function() {
+      var miles = parseInt($('#miles').val().replace(/[^\d\.]/g, ''));
+      miles = miles || 0.0;
+      $('#comb_cost').html('$' + dollar_format((miles / <%= @comb_mileage %> * <%= @user_gas_price %>).toFixed(2)));
+      $('#city_cost').html('$' + dollar_format((miles / <%= @city_mileage %> * <%= @user_gas_price %>).toFixed(2)));
+      $('#highway_cost').html('$' + dollar_format((miles / <%= @highway_mileage %> * <%= @user_gas_price %>).toFixed(2)));
+      $('#comb_cost1').html('$' + dollar_format((miles / 33 * <%= @sipper_gas_price %>).toFixed(2)));
+      $('#city_cost1').html('$' + dollar_format((miles / 30 * <%= @sipper_gas_price %>).toFixed(2)));
+      $('#highway_cost1').html('$' + dollar_format((miles / 40 * <%= @sipper_gas_price %>).toFixed(2)));
+      $('#comb_cost2').html('$' + dollar_format((miles / 10 * <%= @guzzler_gas_price %>).toFixed(2)));
+      $('#city_cost2').html('$' + dollar_format((miles / 8 * <%= @guzzler_gas_price %>).toFixed(2)));
+      $('#highway_cost2').html('$' + dollar_format((miles / 15 * <%= @guzzler_gas_price %>).toFixed(2)));
+  });
+</script>

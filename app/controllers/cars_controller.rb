@@ -4,10 +4,22 @@ class CarsController < ApplicationController
 
   def index
     current_id = current_user.car_id
-    user_car = Car.find(current_id)
-    @city_mileage = user_car.city_mileage
-    @highway_mileage = user_car.highway_mileage
-    @comb_mileage = user_car.comb_mileage
+    @user_car = Car.find(current_id)
+    @city_mileage = @user_car.city_mileage
+    @highway_mileage = @user_car.highway_mileage
+    @comb_mileage = @user_car.comb_mileage
+    city_id = current_user.city_id
+    gas_grade_id = current_user.car.gas_grade_id
+    @grade_name = current_user.car.gas_grade.grade_name
+    @car_name = "#{@user_car.year.to_s} #{@user_car.make} #{@user_car.model} (#{@user_car.trany})"
+    date = Date.today
+    gas_price_obj = GasPrice.where('date <= ? and city_id = ? and gas_grade_id = ?',
+                                   date, city_id, gas_grade_id)
+    @user_gas_price = gas_price_obj.first.gas_price || 0.0
+    @sipper_gas_price = GasPrice.find_by('date <= ? and city_id = ? and gas_grade_id = ?',
+                                   date, city_id, 1).gas_price || 0.0
+    @guzzler_gas_price = GasPrice.find_by('date <= ? and city_id = ? and gas_grade_id = ?',
+                                         date, city_id, 3).gas_price || 0.0
   end
 
   def show
@@ -18,7 +30,7 @@ class CarsController < ApplicationController
 
   # GET /cars/new
   def new
-   @car = Car.new
+    @car = Car.new   # @cost = pramas[:miles]/@comb_mileage * @pgp
    @years = Car.uniq.pluck(:year).sort
    @makes = ['Select make...']
    @models = ['Select model...']
