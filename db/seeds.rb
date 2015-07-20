@@ -28,6 +28,7 @@ end
 GasPrice.k_update_gas_data
 GasPrice.my_update_gas_data
 OilPrice.k_update_oil_data
+OilPrice.my_update_oil_data
 
 cities =  City.all
 cars = Car.all

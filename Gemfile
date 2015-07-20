@@ -57,6 +57,7 @@ gem 'puma'
 gem 'figaro'
 group :production do
   gem 'rails_12factor'
+  gem 'faker'
 end
 
 group :development, :test do
