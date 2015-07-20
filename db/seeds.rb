@@ -1,4 +1,4 @@
-require 'CSV'
+require 'csv'
 
 ["Regular","Midgrade","Premium"].each do |type|
   GasGrade.find_or_create_by(grade_name: type)
