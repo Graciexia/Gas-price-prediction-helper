@@ -55,14 +55,14 @@ end
 
 gem 'puma'
 gem 'figaro'
+gem 'faker'
+
 group :production do
   gem 'rails_12factor'
-  gem 'faker'
 end
 
 group :development, :test do
   gem 'pry'
-  gem 'faker'
 end
 
 gem 'bullet', group: :development
