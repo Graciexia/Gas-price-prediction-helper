@@ -2,8 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .hints {
-  animation-duration: 3s;
+  animation-duration: 1s;
   animation-name: slidein;
+  text-align: center;
   }
 
 @keyframes slidein {
@@ -21,8 +22,15 @@
 .dashboard {
   position: absolute;
   left: 20%;
+  margin-top:40px;
+  margin-bottom:30px;
+  backgrond-color:rgb(255, 209, 170);
+  }
+
+#dashboard1 {
+  opacity: 0.0;
   }
 
 .dash {
-  height: 500px;
+  height: 100px;
   }

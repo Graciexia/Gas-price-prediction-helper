@@ -3,23 +3,27 @@ class CarsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    current_id = current_user.car_id
-    @user_car = Car.find(current_id)
-    @city_mileage = @user_car.city_mileage
-    @highway_mileage = @user_car.highway_mileage
-    @comb_mileage = @user_car.comb_mileage
-    city_id = current_user.city_id
-    gas_grade_id = current_user.car.gas_grade_id
-    @grade_name = current_user.car.gas_grade.grade_name
-    @car_name = "#{@user_car.year.to_s} #{@user_car.make} #{@user_car.model} (#{@user_car.trany})"
-    date = Date.today
-    gas_price_obj = GasPrice.where('date <= ? and city_id = ? and gas_grade_id = ?',
-                                   date, city_id, gas_grade_id)
-    @user_gas_price = gas_price_obj.first.gas_price || 0.0
-    @sipper_gas_price = GasPrice.find_by('date <= ? and city_id = ? and gas_grade_id = ?',
-                                   date, city_id, 1).gas_price || 0.0
-    @guzzler_gas_price = GasPrice.find_by('date <= ? and city_id = ? and gas_grade_id = ?',
-                                         date, city_id, 3).gas_price || 0.0
+    if current_user.car == nil
+      redirect_to new_car_path
+    else
+      current_id = current_user.car_id
+      @user_car = Car.find(current_id)
+      @city_mileage = @user_car.city_mileage
+      @highway_mileage = @user_car.highway_mileage
+      @comb_mileage = @user_car.comb_mileage
+      city_id = current_user.city_id
+      gas_grade_id = current_user.car.gas_grade_id
+      @grade_name = current_user.car.gas_grade.grade_name
+      @car_name = "#{@user_car.year.to_s} #{@user_car.make} #{@user_car.model} (#{@user_car.trany})"
+      date = Date.today
+      gas_price_obj = GasPrice.where('date <= ? and city_id = ? and gas_grade_id = ?',
+                                     date, city_id, gas_grade_id)
+      @user_gas_price = gas_price_obj.first.gas_price || 0.0
+      @sipper_gas_price = GasPrice.find_by('date <= ? and city_id = ? and gas_grade_id = ?',
+                                     date, city_id, 1).gas_price || 0.0
+      @guzzler_gas_price = GasPrice.find_by('date <= ? and city_id = ? and gas_grade_id = ?',
+                                           date, city_id, 3).gas_price || 0.0
+    end
   end
 
   def show
@@ -30,16 +34,32 @@ class CarsController < ApplicationController
 
   # GET /cars/new
   def new
-    @car = Car.new   # @cost = pramas[:miles]/@comb_mileage * @pgp
-   @years = Car.uniq.pluck(:year).sort
-   @makes = ['Select make...']
-   @models = ['Select model...']
-   @tranies = ['Select transmission...']
+    if current_user.car != nil
+      redirect_to edit_car_path
+    else
+      @car = Car.new   # @cost = pramas[:miles]/@comb_mileage * @pgp
+      @years = ['Select year...'] + Car.uniq.pluck(:year).sort
+      @makes = ['Select make...']
+      @models = ['Select model...']
+      @tranies = ['Select transmission...']
+    end
   end
 
   # GET /cars/1/edit
   def edit
-    @car = current_user.car
+    if current_user.car == nil
+      redirect_to new_car_path
+    else
+      @car = current_user.car
+      @years = Car.uniq.pluck(:year).sort
+      params[:year] = @car.year
+      self.update_makes
+      params[:make] = @car.make
+      self.update_models
+      params[:model] = @car.model
+      self.update_tranies
+      params[:trany] = @car.trany
+    end
   end
 
   # POST /cars
@@ -53,7 +73,7 @@ class CarsController < ApplicationController
 
     respond_to do |format|
       if current_user.save
-        format.html { redirect_to gas_prices_path, notice: 'Your car profile was successfully created.' }
+        format.html { redirect_to gas_prices_path, notice: 'Your car profile was successfully updated.' }
         format.json { render :show, status: :created, location: @car }
       else
         format.html { render :new }
@@ -65,15 +85,7 @@ class CarsController < ApplicationController
   # PATCH/PUT /cars/1
   # PATCH/PUT /cars/1.json
   def update
-    respond_to do |format|
-      if @car.update(car_params)
-        format.html { redirect_to @car, notice: 'Car was successfully updated.' }
-        format.json { render :show, status: :ok, location: @car }
-      else
-        format.html { render :edit }
-        format.json { render json: @car.errors, status: :unprocessable_entity }
-      end
-    end
+    self.create
   end
 
   # DELETE /cars/1

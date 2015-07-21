@@ -1,1 +1,2 @@
-$('#car_submit').prop("disabled", false);
+adjust_fields();
+

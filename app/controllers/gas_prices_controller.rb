@@ -1,5 +1,8 @@
 class GasPricesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter do
+    redirect_to new_car_path if (current_user.car == nil)
+  end
 
   def index
     city_id = current_user.city_id
@@ -10,13 +13,6 @@ class GasPricesController < ApplicationController
     @gcpp, @cgp = predict_gas_change(city_id, gas_grade_id)
     # to get the predition gas price
     @pgp = @cgp * (1.0 + @gcpp)
-    if @gcpp.abs < 0.0025
-      @message = 'No significant change predicted. Buy today or tomorrow! :-)'
-    elsif @gcpp >= 0.0025
-      @message = 'Buy today! Prices will probably go up tomorrow :-o'
-    else
-      @message = 'Wait! Prices will probably go down tomorrow :-o'
-    end
   end
 
 # to get daily oil price

@@ -1,9 +1,9 @@
 class CitiesController < ApplicationController
   before_action :set_city, only: [:show, :edit, :update, :destroy]
 
-  before_filter do
-    redirect_to new_car_path if user_is_logged_in?
-  end
+  # before_filter do
+  #   redirect_to new_car_path if (current_user.car == nil)
+  # end
 
 
   # GET /cities

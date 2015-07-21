@@ -18,19 +18,29 @@
         </div>
         <div class="col-md-6" align="right">
           <% if user_signed_in? %>
-            <%= link_to('Log out', destroy_user_session_path, {:method => :delete, class: "btn btn-danger", role:"button"}) %>
+              <table>
+                <tbody>
+                  <tr style="color: black">
+                    <td>
+                      <%= link_to('Log out', destroy_user_session_path, {:method => :delete, class: "btn btn-danger", role:"button"}) %>
+                      &nbsp;<%= link_to( icon('home faa-pulse fa-3x animated-hover'), root_path) %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
           <% else %>
             <%= form_for(:user, :url => session_path(:user)) do |f| %>
               <br />
               <table>
                 <tr style="color: black">
                   <td> <%= f.text_field :email %> </td>
-                  <td> <%= f.password_field :password %> </td>
-                  <td> <%= f.submit 'Log in',class: "btn btn-danger", redirect:new_session_path(resource_name)%> </td>
+                  <td>&nbsp; <%= f.password_field :password %> </td>
+                  <td>&nbsp; <%= f.submit 'Log in',class: "btn btn-danger", redirect:new_session_path(resource_name)%> </td>
+                  <td>&nbsp; <%= link_to( icon('home faa-pulse fa-3x animated-hover'), root_path) %> </td>
                 </tr>
                 <tr>
                   <td> <%= f.check_box :remember_me %> <%= f.label :remember_me %> </td>
-                  <td> <%= link_to "Forgot your password?", new_password_path(:user) %> </td>
+                  <td>&nbsp; <%= link_to "Forgot your password?", new_password_path(:user) %> </td>
                 </tr>
               </table>
             <% end %>
@@ -55,7 +65,7 @@
     </div>
     <div class="col-md-3">
       <%=icon('money faa-float fa-3x animated-hover ')%><br>
-      <%= link_to "Your Car's Mileage Cost", cars_path%>
+      <%= link_to "Your Car's Mileage Cost", cars_path %>
     </div>
     <div class="col-md-3">
       <%=icon('area-chart faa-float fa-3x animated-hover ')%><br>
@@ -63,7 +73,7 @@
     </div>
     <div class="col-md-3">
       <%=icon('car faa-float fa-3x animated-hover ')%><br>
-      <%= link_to "Your Car's Profile", @car %>
+      <%= link_to "Your Car's Profile", edit_car_path(1) %>
       <br><br>
     </div>
     <h5>@2015 Made By Gracie</h5>

@@ -1,40 +1,54 @@
-
-
-
-
-    <div id=dashboard1 class="panel panel-default dashboard" hidden="hidden">
-      <div class="panel-body">
-        <div style="vertical-align: middle" align="center">
-            <h4><small>Gas type:</small> <%= @grade_name %></h4>
-            <h4><small>Predicted Gas Price:</small> $<%= @pgp.round(3) %> /gallon</h4>
-            <h4><small>Percentage Change:</small> <%= @gcpp.round(3) * 100 %>%</h4>
-            <h4><small>Today's gas price is</small> $<%= @cgp %> /gallon</h4>
-        </div>
-      </div>
+<div id=dashboard2 class="panel panel-default dashboard">
+  <div class="panel-body hints">
+    <% if @gcpp.abs < 0.0025 %>
+      <h3>Buy today or tomorrow! No significant change predicted.</h3>
+      <%=icon('dollar faa-pulse fa-3x animated')%>
+      <%=icon('arrows-h faa-passing fa-3x')%><br>
+        <%= image_tag('okstation.jpg', {alt:"okgasstation", height:"400", width:"800"}) %>
+    <% elsif @gcpp >= 0.0025 %>
+      <h3>Buy today! Prices will probably go up tomorrow.</h3>
+        <%=icon('flash faa-flash fa-3x animated')%>
+        <%=icon('line-chart faa-bounce fa-3x animated')%><br>
+        <%= image_tag('packedstation.jpg', {alt:"packedgasstation", height:"400", width:"800"}) %>
+    <% else %>
+      <h3>Wait! Prices will probably go down tomorrow.</h3>
+        <%=icon('smile-o faa-ring fa-3x animated')%>
+        <%=icon('level-down faa-bounce fa-3x animated')%><br>
+        <%= image_tag('emptystation.jpg', {alt:"emptygasstation", height:"400", width:"800"}) %>
+    <% end %>
+    <br>
+  </div>
+</div>
+<div id=dashboard1 class="panel panel-default dashboard">
+  <div class="panel-body">
+    <div style="vertical-align: middle" align="center">
+      <br><br>
+      <h4><small>Gas type:</small> <%= @grade_name %></h4>
+      <h2><small>Predicted Gas Price:</small> $<%= @pgp.round(3) %> /gallon</h2>
+      <h4><small>Percentage Change:</small> <%= @gcpp.round(3) * 100 %>%</h4>
+      <h4><small>Today's gas price is</small> $<%= @cgp %> /gallon</h4>
     </div>
+  </div>
+</div>
 
-    <div id=dashboard2 class="panel panel-default dashboard">
-      <div class="panel-body hints">
-        <h3><%= @message %></h3><br>
-        <%=icon('fa-spinner faa-horizontal fa-3x animated')%>
-        <%=icon('line-chart faa-horizontal fa-3x animated')%>
-      </div>
-    </div>
 
-    <div class="dash">
-      <%= link_to 'Mileage Cost', cars_path, class: 'btn btn-large btn-default' %>
-      <%= link_to 'Trend Graph', oil_prices_path, class: 'btn btn-large btn-default' %>
-    </div>
+<div class="dash">
 
+</div>
 
 <script>
-$('#dashboard2').mouseenter(function() {
+$(document).ready(function() {
     $('#dashboard1').height($('#dashboard2').height());
     $('#dashboard1').width($('#dashboard2').width());
-    $('#dashboard1').show(0);
-    $('#dashboard1').transit({y: $('#dashboard2').height()+'px' });
+    $('.dash').height($('#dashboard2').height());
+    $('.dash').width($('#dashboard2').width());
+    $('.dash').css('margin-top',$('#dashboard2').css('margin-top'));
+    $('.dash').css('margin-bottom',$('#dashboard2').css('margin-bottom'));
 });
-$('#dashboard2').mouseleave(function() {
-    $('#dashboard1').transit({y: '0px'});
+$('#dashboard1').mouseenter(function() {
+    $('#dashboard1').transit({opacity: 1.0});
+});
+$('#dashboard1').mouseleave(function() {
+    $('#dashboard1').transit({opacity: 0.0});
 });
 </script>
