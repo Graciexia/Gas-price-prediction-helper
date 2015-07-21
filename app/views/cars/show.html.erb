@@ -35,11 +35,10 @@
         <div class="panel panel-header text-center">
           <h5><strong>Gas Grade:</strong></h5>
         </div>
-        <p><%= @car.gas_grade %></p>
+        <p><%= @car.gas_grade.grade_name %></p>
       </div>
     </div>
   </div>
 </div>
 
-<%= link_to 'Edit Your Car', new_car_path %>
-<%= link_to 'Back', gas_prices_path %>
+<%= link_to 'Edit Your Car', new_car_path, class: 'btn btn-large btn-success %>

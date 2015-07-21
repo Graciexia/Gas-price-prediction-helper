@@ -39,10 +39,36 @@
       </div>
     </div>
   </header>
-  <div class="notice"><%= notice %></div>
-  <div class="alert"><p class="alert-text"><%= alert %></p></div>
+  <% if notice || alert %>
+    <div class="notice"><%= notice %></div>
+    <div class="alert"><p class="alert-text"><%= alert %></p></div>
+  <% end %>
 
 <%= yield %>
+<footer>
 
+  <div class="row footer" style="font-size:15px;color:white;font-family:RobotoDraft,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif">
+    <br>
+    <div class="col-md-3">
+      <%=icon('line-chart faa-horizontal fa-3x animated-hover')%><br>
+      <%= link_to 'Gas Price Prediction', gas_prices_path %>
+    </div>
+    <div class="col-md-3">
+      <%=icon('money faa-float fa-3x animated-hover ')%><br>
+      <%= link_to "Your Car's Mileage Cost", cars_path%>
+    </div>
+    <div class="col-md-3">
+      <%=icon('area-chart faa-float fa-3x animated-hover ')%><br>
+      <%= link_to 'Price Trends Graph', oil_prices_path %>
+    </div>
+    <div class="col-md-3">
+      <%=icon('car faa-float fa-3x animated-hover ')%><br>
+      <%= link_to "Your Car's Profile", @car %>
+      <br><br>
+    </div>
+    <h5>@2015 Made By Gracie</h5>
+    <br>
+  </div>
+</footer>
 </body>
 </html>

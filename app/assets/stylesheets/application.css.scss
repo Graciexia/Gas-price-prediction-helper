@@ -1,81 +1,52 @@
-@import 'bootstrap-sprockets';
-@import 'bootstrap';
-@import "font-awesome-sprockets";
-@import "font-awesome";
+  @import 'bootstrap-sprockets';
+  @import 'bootstrap';
+  @import "font-awesome-sprockets";
+  @import "font-awesome";
 
-//You need to now manually import every other scss file.
-@import "cities.scss";
-@import "gas_prices.scss";
+  //You need to now manually import every other scss file.
+  @import "cities.scss";
+  @import "gas_prices.scss";
+  @import "oil_prices.scss";
+  @import "cars.scss";
 
-header {
-  background-color: #00B5A4;
+  header {
+    background-color: #00B5A4;
 
-  border-bottom-width: 5px;
-  border-bottom-style: solid;
-  border-bottom-color: rgb(0, 156, 141);
-  color : white
-}
-
-.notice {
-  position:absolute;
-  width:100%;
-  color:black;
-  background-color:#ff5722;
-  text-align: center;
-}
-
-.alert {
-  width:100%;
-  height:20px;
-  color:red;
-  text-align: center;
-  }
-
-
-
-.row {
-  display: table;
-  }
-
-[class*="col-"] {
-  float: none;
-  display: table-cell;
-  vertical-align: middle;
-  }
-.icon {
-  width: 50px;
-  height: 50px;
-  }
-
-.wrapper {
-    -moz-transition: -moz-transform 1s ease-out, left 1s ease-out, right 1s ease-out, top 1s 1s ease-out, margin-top 1s 1s ease-out;
-    -o-transition: -o-transform 1s ease-out, left 1s ease-out, right 1s ease-out, top 1s 1s ease-out, margin-top 1s 1s ease-out;
-    -webkit-transition: -webkit-transform 1s ease-out, left 1s ease-out, right 1s ease-out, top 1s 1s ease-out, margin-top 1s 1s ease-out;
-    transition: transform 1s ease-out, left 1s ease-out, right 1s ease-out, top 1s 1s ease-out, margin-top 1s 1s ease-out;
-}
-
-    .wrapper:hover {
-        top: 60%;
-        left: 0;
-        margin-top: -280px;
-        -moz-transform: rotateY(0);
-        -ms-transform: translate(0, 0);
-        -o-transform: rotateY(0);
-        -webkit-transform: rotateY(0);
-        transform: rotateY(0);
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(0, 156, 141);
+    color : white
     }
-    .wrapper h3 {
-        position: relative;
-        padding: 0 10px;
-        height: 50px;
-        white-space: nowrap;
-        line-height: 50px;
+
+  .notice {
+    position:absolute;
+    width:100%;
+    color:black;
+    background-color:#ff5722;
+    text-align: center;
     }
-    @media (height: 1366px) {
-    .col-md-6 {
-        -moz-background-size: auto 50%;
-        -o-background-size: auto 50%;
-        -webkit-background-size: auto 50%;
-        background-size: auto 50%;
+
+  .alert {
+    width:100%;
+    height:20px;
+    color:red;
+    text-align: center;
     }
-}
+
+
+
+
+  .icon {
+    width: 50px;
+    height: 50px;
+    }
+.footer{
+    background-color: #333333;
+    text-align: center;
+    margin-top:20px;
+    color: white;
+  }
+a{
+  color: white;
+  }
+

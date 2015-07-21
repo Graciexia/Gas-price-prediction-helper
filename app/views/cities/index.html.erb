@@ -1,61 +1,82 @@
-<div class="container city">
-  <div class="row">
-    <div class="col-md-8" >
-        <p></p>
-    </div>
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div class="panel panel-header text-center" >
-          <h3>Let's Get Started</h3>
-          <h5> It's free and always will be </h5>
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <%= devise_error_messages! %>
-            <div class="field" >
-              <%= f.label :name %><br />
-              <%= f.text_field :name, autofocus: true %><br/><br/>
-            </div>
-            <div class="field">
-              <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true %><br/><br/>
-            </div>
-            <div class="field">
-              <%= f.label :password %>
-              <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-                  <%end%> <br />
-              <%= f.password_field :password, autocomplete: "off" %><br/><br/>
-            </div>
-            <div class="field">
-              <%= f.label :password_confirmation %><br />
-              <%= f.password_field :password_confirmation, autocomplete: "off" %><br /><br/>
-            </div>
-            <div class="form-group" align="center">
-              <%= f.label :city%><br />
-              <%= f.select :city_id, city_dropdown, {selected: params[:city_id]}, {autofocus: true, class: "form-control", style: "width:50%"} %><br/>
-            </div>
-            <div class="actions">
-              <%= f.submit "Sign up",class: "btn btn-danger", redirect: new_registration_path(resource_name) %>
-            </div>
-          <% end %>
-        </div>
+<div class = "root">
+  <div class="row ">
+    <div class="col-md-12" >
+      <h1></h1>
+    </div><br><br><br><br>
+  </div>
+  <div class="row city">
+    <div class="col-md-12" >
+      <div class="title">
+      <h1>When Can You Buy The Cheaper Gas</h1><br><br><br>
+      </div>
+      <div class="inside">
+      <h3>Crunching The Real Data</h3><br><br><br>
+      <h3>Making Gas Price Prediction For You</h3>
       </div>
     </div>
   </div>
-</div>
-<div class="container function">
-  <br><br>
-  <div class="row" style="font-size:15px;color:white;font-family:RobotoDraft,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif">
-    <div class="col-md-4">
-      <%=icon('line-chart faa-horizontal fa-3x animated')%><br>
-      <span>Gas Price Prediction </span>
-    </div>
-    <div class="col-md-4">
-      <%=icon('money faa-float fa-3x animated ')%><br>
-      <span>Your Car's Mileage Cost</span>
-    </div>
-    <div class="col-md-4">
-      <%=icon('area-chart faa-float fa-3x animated ')%><br>
-      <span>Price Trends Graph</span>
+  <div class="row ">
+    <div class="col-md-12" >
+      <h1></h1><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
   </div>
+  <div class="start">
+  <div class="row title2">
+    <div class="col-md-offset-4 col-md-4">
+
+          <h3>Let's Get Started</h3>
+          <h4> It's free and always will be </h4>
+      </div>
+    <div>
+  <div class="row info">
+    <div class="col-md-12">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="col-md-3">
+        <div class="form-group registration">
+              <%= f.label :name %>
+              <%= f.text_field :name, autofocus: true %>
+        </div>
+        </div>
+        <div class="col-md-3">
+        <div class="form-group registration">
+              <%= f.label :email %>
+              <%= f.email_field :email, autofocus: true %>
+        </div>
+        </div>
+        <div class="col-md-3">
+        <div class="form-group registration">
+              <%= f.label :password %>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <%end%>
+              <%= f.password_field :password, autocomplete: "off" %>
+        </div>
+        </div>
+        <div class="col-md-3">
+        <div class="form-group registration">
+              <%= f.label :password_confirmation %>
+              <%= f.password_field :password_confirmation, autocomplete: "off" %>
+        </div>
+        </div>
+      </div>
+      </div>
+  <div class="row info">
+    <div class="col-md-offset-4 col-md-4">
+      <div class="form-group registration">
+              <%= f.label :city%>
+              <%= f.select :city_id, city_dropdown, {selected: params[:city_id]}, {autofocus: true, class: "form-control", style: "width:50%"} %><br/>
+      </div>
+    </div>
+  <div>
+  <div class="row title2">
+    <div class="col-md-offset-4 col-md-4">
+      <div class="actions">
+              <%= f.submit "Sign up",class: "btn btn-danger", redirect: new_registration_path(resource_name) %>
+      </div>
+    </div>
+  </div>
+      <% end %>
+  </div>
 </div>
+

@@ -1,8 +1,9 @@
 <p id="notice" xmlns:width="http://www.w3.org/1999/xhtml"><%= notice %></p>
+<div class="trend">
 
-<h1>Cude Oil and Gas Prices Trend</h1>
+<h1>Crude Oil and Gas Prices Trend</h1>
 
-<div style="width:80%">
+<div class="graph" style="width:80%">
 
 <% oil_data = @oil_prices.select{|a| a.date > Date.today-30}.sort{|a,b| a.date <=> b.date} %>
 <% gas_data = @gas_prices.select{|a| a.date > Date.today-30}.sort{|a,b| a.date <=> b.date} %>
@@ -25,13 +26,12 @@
                    "1": { targetAxisIndex: 1, lineWidth: 3}
              },
            vAxes: {
-             "0": {title: 'Oil Price', viewWindow: {min: min_oil}, format: "$#,###" },
-             "1": {title: 'Gas Price', viewWindow: {min: min_gas}, format: "currency" }
+             "0": {title: 'Oil & Gas Index ($/share)', viewWindow: {min: min_oil}, format: "$##,###" },
+             "1": {title: 'Gas Price ($/gallon)', viewWindow: {min: min_gas}, format: "currency" }
              }
    }
 %>
 </div>
+</div>
 
 
-
-<%= link_to 'New Oil price', new_oil_price_path %>

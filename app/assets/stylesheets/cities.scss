@@ -2,7 +2,32 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.root{
+  background-image: image-url("streetchina.jpg");
+
+  background-repeat: no-repeat;
+  background-size: cover
+  }
+
 .city{
-  background-image: image-url("street.jpg");
-  background-size: 75%
+  text-align:center;
+  margin:auto;
+  }
+.title {
+  color:rgb(120, 40, 107);
+  }
+.inside {
+  color:rbg(170, 85, 133);
+  }
+
+.start {
+  background-color: rgba(0, 181, 164, 0.75);
+
+  color: rgb(120, 40, 107);
+ }
+.registration{
+  display:inline;
+  }
+.title2 {
+  text-align: center;
   }

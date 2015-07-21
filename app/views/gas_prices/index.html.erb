@@ -1,4 +1,7 @@
-<div class="container">
+
+
+
+
     <div id=dashboard1 class="panel panel-default dashboard" hidden="hidden">
       <div class="panel-body">
         <div style="vertical-align: middle" align="center">
@@ -11,16 +14,18 @@
     </div>
 
     <div id=dashboard2 class="panel panel-default dashboard">
-      <div class="panel-body">
+      <div class="panel-body hints">
         <h3><%= @message %></h3><br>
         <%=icon('fa-spinner faa-horizontal fa-3x animated')%>
         <%=icon('line-chart faa-horizontal fa-3x animated')%>
       </div>
     </div>
-</div>
 
-<%= link_to 'Mileage Cost', cars_path %>
-<%= link_to 'Trend Graph', oil_prices_path %>
+    <div class="dash">
+      <%= link_to 'Mileage Cost', cars_path, class: 'btn btn-large btn-default' %>
+      <%= link_to 'Trend Graph', oil_prices_path, class: 'btn btn-large btn-default' %>
+    </div>
+
 
 <script>
 $('#dashboard2').mouseenter(function() {
