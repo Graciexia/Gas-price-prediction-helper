@@ -37,28 +37,31 @@ What was used
 -------------
 
 JS, jQuery,HTML, Sass
-Devise for logging in.
-Kimono'API to crawl the data website.
-Nokogiri gem for building up my own crawller in model of GasPrice and OilPrice) .
-Whenever gem for pulling off data at the set up time everyday.
-Chartkick and Groupdate for making the graph.
-Font-awesome-sass for icon.
-Parallax.js 
-Check out the [Gemfile](https://github.com/Graciexia/Gas-price-prediction-helper/blob/master/Gemfile) to see all that was used.
-Rails (4.2.1)
-Hosting by Heroku
-Postgresql Database
-Puma webserver
+
+ - Devise for logging in.
+ - Kimono'API to crawl the data website.
+ - Nokogiri gem for building up my own crawller in model of GasPrice and
+   OilPrice) .
+ - Whenever gem for pulling off data at the set up time everyday.
+ - Chartkick and Groupdate for making the graph.
+ - Font-awesome-sass for icon.
+ - Parallax.js
+ - Check out the      
+   [Gemfile](https://github.com/Graciexia/Gas-price-prediction-helper/blob/master/Gemfile)
+   to see all that was used.
+ - Rails (4.2.1)
+ - Hosting by Heroku
+ - Postgresql Database
+ 
+ - Puma webserver
 
 More info
 ---------
 
-[trello](https://trello.com/b/0hGAFtEw/final-project-gas-prediction) scrum board
-Data Scouce:
-gas price:  http://fuelg## Heading ##augereport.aaa.com
-oil price:  http://finance.yahoo.com/q/hp?s=%5EXOI+Historical+Prices
-mileage cost: 2015 IRS Mileage Rate Report
+ - [Trello scrum board](https://trello.com/b/0hGAFtEw/final-project-gas-prediction)
+ - Data Scouce:
+ - gas price:  http://fuelgaugereport.aaa.com
+ - oil price:  http://finance.yahoo.com/q/hp?s=%5EXOI+Historical+Prices
+ - mileage cost: 2015 IRS Mileage Rate Report
 
 
-
-s
