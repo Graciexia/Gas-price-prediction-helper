@@ -1,31 +1,31 @@
 <div class="trend parallax-window">
-<h1 class="bluepanel" style="margin-bottom:50px; margin-top:50px">Crude Oil and Gas Prices Trend</h1>
-<div class="graph" style="width:80%">
-<% oil_data = @oil_prices.select{|a| a.date > Date.today-30}.sort{|a,b| a.date <=> b.date} %>
-<% gas_data = @gas_prices.select{|a| a.date > Date.today-30}.sort{|a,b| a.date <=> b.date} %>
-<% cd_data = [{name: 'Oil Price', data: oil_data.map{|x| [x.date + 8.hours, x.oil_price] }}] %>
-<% cd_data << {name: 'Gas Price', data: gas_data.map{|x| [x.date + 8.hours, x.gas_price] }}%>
-<% min_oil = cd_data[0][:data].map{|x|x[1]}.min * 0.99 %>
-<% min_gas = cd_data[1][:data].map{|x|x[1]}.min * 0.99 %>
-<%= line_chart cd_data,
-   height: "500px",
-   library: {
-           interpolateNulls: true,
-           backgroundColor: {fill: "#C0C0C0"},
-           title: "30 Day Price Changes",
-           hAxis: {
-             title: "Date",
-             format:"MMM dd"
-             },
-           series: {
-                   "0": { targetAxisIndex: 0, lineWidth: 3},
-                   "1": { targetAxisIndex: 1, lineWidth: 3}
-             },
-           vAxes: {
-             "0": {title: 'Oil & Gas Index ($/share)', viewWindow: {min: min_oil}, format: "$##,###" },
-             "1": {title: 'Gas Price ($/gallon)', viewWindow: {min: min_gas}, format: "currency" }
-             }
-   }
-%>
-</div>
+  <h1 class="bluepanel" style="margin-bottom:50px; margin-top:50px">Crude Oil and Gas Prices Trend</h1>
+  <div class="graph" style="width:80%">
+    <% oil_data = @oil_prices.select{|a| a.date > Date.today-30}.sort{|a,b| a.date <=> b.date} %>
+    <% gas_data = @gas_prices.select{|a| a.date > Date.today-30}.sort{|a,b| a.date <=> b.date} %>
+    <% cd_data = [{name: 'Oil Price', data: oil_data.map{|x| [x.date + 8.hours, x.oil_price] }}] %>
+    <% cd_data << {name: 'Gas Price', data: gas_data.map{|x| [x.date + 8.hours, x.gas_price] }}%>
+    <% min_oil = cd_data[0][:data].map{|x|x[1]}.min * 0.99 %>
+    <% min_gas = cd_data[1][:data].map{|x|x[1]}.min * 0.99 %>
+    <%= line_chart cd_data,
+                   height: "500px",
+                   library: {
+                           interpolateNulls: true,
+                           backgroundColor: {fill: "#C0C0C0"},
+                           title: "30 Day Price Changes",
+                           hAxis: {
+                                   title: "Date",
+                                   format:"MMM dd"
+                           },
+                           series: {
+                                   "0": { targetAxisIndex: 0, lineWidth: 3},
+                                   "1": { targetAxisIndex: 1, lineWidth: 3}
+                           },
+                           vAxes: {
+                                   "0": {title: 'Oil & Gas Index ($/share)', viewWindow: {min: min_oil}, format: "$##,###" },
+                                   "1": {title: 'Gas Price ($/gallon)', viewWindow: {min: min_gas}, format: "currency" }
+                           }
+                   }
+    %>
+  </div>
 </div>

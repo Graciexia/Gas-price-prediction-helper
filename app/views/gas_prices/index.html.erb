@@ -21,12 +21,12 @@
 </div>
 <div id=dashboard1 class="panel panel-default dashboard bluepanel" style="background-color: #00B5A4">
   <div class="panel-body">
-    <div align="center">
+    <div align="cent">
       <br><br>
-      <h4><small style="color:lightgrey">City:</small> <%= @user_city %></h4>
-      <h4><small style="color:lightgrey">Gas type:</small> <%= @grade_name %></h4>
-      <h2><small style="color:lightgrey">Predicted Gas Price:</small> $<%= @pgp.round(3) %> /gallon</h2>
-      <h4><small style="color:lightgrey">Percentage Change:</small> <%= @gcpp.round(3) * 100 %>%</h4>
+      <h4><small style="color:lightgrey">City:</small> <%= @user_city %></h4><br>
+      <h4><small style="color:lightgrey">Gas type:</small> <%= @grade_name %></h4><br>
+      <h2><small style="color:lightgrey">Predicted Gas Price:</small> $<%= @pgp.round(3) %> /gallon</h2><br>
+      <h4><small style="color:lightgrey">Percentage Change:</small> <%= @gcpp.round(3) * 100 %>%</h4><br>
       <h4><small style="color:lightgrey">Today's gas price is</small> $<%= @cgp %> /gallon</h4>
     </div>
   </div>
