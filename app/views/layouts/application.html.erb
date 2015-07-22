@@ -9,6 +9,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="parallax-window">
   <header>
     <div class="container">
       <div class="row">
@@ -18,12 +19,15 @@
         </div>
         <div class="col-md-6" align="right">
           <% if user_signed_in? %>
+              <br>
               <table>
                 <tbody>
                   <tr style="color: black">
                     <td>
                       <%= link_to('Log out', destroy_user_session_path, {:method => :delete, class: "btn btn-danger", role:"button"}) %>
-                      &nbsp;<%= link_to( icon('home faa-pulse fa-3x animated-hover'), root_path) %>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;&nbsp;<%= link_to( icon('home faa-pulse fa-3x animated-hover'), root_path) %>
                     </td>
                   </tr>
                 </tbody>
@@ -40,7 +44,7 @@
                 </tr>
                 <tr>
                   <td> <%= f.check_box :remember_me %> <%= f.label :remember_me %> </td>
-                  <td>&nbsp; <%= link_to "Forgot your password?", new_password_path(:user) %> </td>
+                  <td>&nbsp; <%= link_to "Need password?", new_password_path(:user) %> </td>
                 </tr>
               </table>
             <% end %>
@@ -54,31 +58,35 @@
     <div class="alert"><p class="alert-text"><%= alert %></p></div>
   <% end %>
 
-<%= yield %>
-<footer>
-
-  <div class="row footer" style="font-size:15px;color:white;font-family:RobotoDraft,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif">
-    <br>
-    <div class="col-md-3">
-      <%=icon('line-chart faa-horizontal fa-3x animated-hover')%><br>
-      <%= link_to 'Gas Price Prediction', gas_prices_path %>
+  <%= yield %>
+  <br>
+  <br>
+  <footer>
+    <div class="row footer" style="font-size:15px;color:white;font-family:RobotoDraft,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif">
+      <br>
+      <div class="col-md-3">
+        <a href="<%=gas_prices_path%>"><%=icon('line-chart faa-horizontal fa-3x animated-hover')%><br>Gas Price Prediction</a>
+        <br>
+      </div>
+      <div class="col-md-3">
+        <a href="<%=cars_path%>"><%=icon('money faa-float fa-3x animated-hover')%><br>Your Car's Mileage Cost</a>
+        <br>
+      </div>
+      <div class="col-md-3">
+        <a href="<%=oil_prices_path%>"><%=icon('area-chart faa-float fa-3x animated-hover')%><br>Price Trends Graph</a>
+        <br>
+      </div>
+      <div class="col-md-3">
+        <a href="<%=edit_car_path(1)%>"><%=icon('car faa-float fa-3x animated-hover')%><br>Your Car's Profile</a>
+        <br>
+        <br>
+      </div>
+      <h5>&copy;2015 Gracie, Inc.</h5>
     </div>
-    <div class="col-md-3">
-      <%=icon('money faa-float fa-3x animated-hover ')%><br>
-      <%= link_to "Your Car's Mileage Cost", cars_path %>
-    </div>
-    <div class="col-md-3">
-      <%=icon('area-chart faa-float fa-3x animated-hover ')%><br>
-      <%= link_to 'Price Trends Graph', oil_prices_path %>
-    </div>
-    <div class="col-md-3">
-      <%=icon('car faa-float fa-3x animated-hover ')%><br>
-      <%= link_to "Your Car's Profile", edit_car_path(1) %>
-      <br><br>
-    </div>
-    <h5>@2015 Made By Gracie</h5>
-    <br>
-  </div>
-</footer>
+  </footer>
+</div>
 </body>
 </html>
+<script>
+    $('.parallax-window').parallax({imageSrc: '<%= asset_path 'streetchina.jpg' %>'});
+</script>

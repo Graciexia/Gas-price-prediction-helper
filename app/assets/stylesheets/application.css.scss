@@ -1,52 +1,56 @@
-  @import 'bootstrap-sprockets';
-  @import 'bootstrap';
-  @import "font-awesome-sprockets";
-  @import "font-awesome";
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
-  //You need to now manually import every other scss file.
-  @import "cities.scss";
-  @import "gas_prices.scss";
-  @import "oil_prices.scss";
-  @import "cars.scss";
+//You need to now manually import every other scss file.
+@import "cities.scss";
+@import "gas_prices.scss";
+@import "oil_prices.scss";
+@import "cars.scss";
 
-  header {
-    background-color: #00B5A4;
-
-    border-bottom-width: 5px;
-    border-bottom-style: solid;
-    border-bottom-color: rgb(0, 156, 141);
-    color : white
-    }
-
-  .notice {
-    position:absolute;
-    width:100%;
-    color:black;
-    background-color:#ff5722;
-    text-align: center;
-    }
-
-  .alert {
-    width:100%;
-    height:20px;
-    color:red;
-    text-align: center;
-    }
-
-
-
-
-  .icon {
-    width: 50px;
-    height: 50px;
-    }
-.footer{
-    background-color: #333333;
-    text-align: center;
-    margin-top:20px;
-    color: white;
+header {
+  background-color: #00B5A4;
+  border-bottom-width: 5px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(0, 156, 141);
+  color : white
   }
-a{
+
+.notice {
+  position:absolute;
+  width:100%;
+  color:black;
+  background-color:#ff5722;
+  text-align: center;
+  }
+
+.alert {
+  width:100%;
+  height:20px;
+  color:red;
+  text-align: center;
+  }
+
+.icon {
+  width: 50px;
+  height: 50px;
+  }
+
+.footer {
+  background-color: #333333;
+  text-align: center;
   color: white;
+  }
+
+a {
+  color: white;
+  }
+
+.bluepanel {
+  background-color: rgba(0, 181, 164, 0.75);
+  color: white;
+  margin-bottom: 100px;
+  margin-top: 100px;
   }
 

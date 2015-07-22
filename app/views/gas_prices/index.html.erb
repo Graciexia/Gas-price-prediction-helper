@@ -1,5 +1,5 @@
-<div id=dashboard2 class="panel panel-default dashboard">
-  <div class="panel-body hints">
+<div id=dashboard2 class="panel panel-default dashboard bluepanel">
+  <div class="panel-body" align="center">
     <% if @gcpp.abs < 0.0025 %>
       <h3>Buy today or tomorrow! No significant change predicted.</h3>
       <%=icon('dollar faa-pulse fa-3x animated')%>
@@ -19,21 +19,21 @@
     <br>
   </div>
 </div>
-<div id=dashboard1 class="panel panel-default dashboard">
+<div id=dashboard1 class="panel panel-default dashboard bluepanel" style="background-color: #00B5A4">
   <div class="panel-body">
-    <div style="vertical-align: middle" align="center">
+    <div align="center">
       <br><br>
-      <h4><small>Gas type:</small> <%= @grade_name %></h4>
-      <h2><small>Predicted Gas Price:</small> $<%= @pgp.round(3) %> /gallon</h2>
-      <h4><small>Percentage Change:</small> <%= @gcpp.round(3) * 100 %>%</h4>
-      <h4><small>Today's gas price is</small> $<%= @cgp %> /gallon</h4>
+      <h4><small style="color:lightgrey">City:</small> <%= @user_city %></h4>
+      <h4><small style="color:lightgrey">Gas type:</small> <%= @grade_name %></h4>
+      <h2><small style="color:lightgrey">Predicted Gas Price:</small> $<%= @pgp.round(3) %> /gallon</h2>
+      <h4><small style="color:lightgrey">Percentage Change:</small> <%= @gcpp.round(3) * 100 %>%</h4>
+      <h4><small style="color:lightgrey">Today's gas price is</small> $<%= @cgp %> /gallon</h4>
     </div>
   </div>
 </div>
 
 
 <div class="dash">
-
 </div>
 
 <script>

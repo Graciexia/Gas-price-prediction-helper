@@ -1,82 +1,75 @@
-<div class = "root">
+<div class="root">
   <div class="row ">
     <div class="col-md-12" >
       <h1></h1>
-    </div><br><br><br><br>
+    </div>
+    <br><br><br><br>
   </div>
-  <div class="row city">
+  <div class="row city title bluepanel">
     <div class="col-md-12" >
       <div class="title">
-      <h1>When Can You Buy The Cheaper Gas</h1><br><br><br>
+        <h1>When Can You Buy The Cheapest Gas?</h1>
       </div>
       <div class="inside">
-      <h3>Crunching The Real Data</h3><br><br><br>
-      <h3>Making Gas Price Prediction For You</h3>
+        <h3>Crunching The Real Data</h3>
+        <h3>Making Gas Price Predictions For You!</h3>
+        <br>
       </div>
     </div>
   </div>
-  <div class="row ">
+  <div class="row">
     <div class="col-md-12" >
-      <h1></h1><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br>
     </div>
   </div>
-  <div class="start">
-  <div class="row title2">
-    <div class="col-md-offset-4 col-md-4">
-
-          <h3>Let's Get Started</h3>
-          <h4> It's free and always will be </h4>
+  <% if ! user_is_logged_in? %>
+    <div class="bluepanel">
+      <div class="row title2">
+        <div class="col-md-offset-4 col-md-4">
+          <h2>Let's Get Started</h2>
+          <h3>It's free and always will be!</h3><br>
+        </div>
       </div>
-    <div>
-  <div class="row info">
-    <div class="col-md-12">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
-      <div class="col-md-3">
-        <div class="form-group registration">
-              <%= f.label :name %>
-              <%= f.text_field :name, autofocus: true %>
+        <div class="row info">
+          <%= devise_error_messages! %>
+          <div class="col-md-offset-2 col-md-3 col-sm-offset-2 col-sm-3 col-xs-offset-1 col-xs-4 text-right">
+            <span><%= f.label :name %>&nbsp;<%= f.text_field :name %></span>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-4 text-right">
+            <span><%= f.label :password %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %>
+            <%= f.password_field :password, autocomplete: "off" %></span>
+          </div>
         </div>
+        <div class="row info">
+          <div class="col-md-offset-2 col-md-3 col-sm-offset-2 col-sm-3 col-xs-offset-1 col-xs-4 text-right">
+            <span><%= f.label :email %>&nbsp;<%= f.email_field :email %></span>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-4 text-right">
+            <span><%= f.label 'Confirm' %>&nbsp;<%= f.password_field :password_confirmation, autocomplete: "off" %></span>
+          </div>
+        <div class="row info">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <br>
+          </div>
         </div>
-        <div class="col-md-3">
-        <div class="form-group registration">
-              <%= f.label :email %>
-              <%= f.email_field :email, autofocus: true %>
+        <div class="row info">
+          <div class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4 col-xs-offset-2 col-xs-8 text-center">
+            <%= f.select :city_id, city_dropdown, {selected: params[:city_id]}, {class: "form-control"} %><br/>
+          </div>
         </div>
-        </div>
-        <div class="col-md-3">
-        <div class="form-group registration">
-              <%= f.label :password %>
-              <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> characters minimum)</em>
-              <%end%>
-              <%= f.password_field :password, autocomplete: "off" %>
-        </div>
-        </div>
-        <div class="col-md-3">
-        <div class="form-group registration">
-              <%= f.label :password_confirmation %>
-              <%= f.password_field :password_confirmation, autocomplete: "off" %>
-        </div>
-        </div>
-      </div>
-      </div>
-  <div class="row info">
-    <div class="col-md-offset-4 col-md-4">
-      <div class="form-group registration">
-              <%= f.label :city%>
-              <%= f.select :city_id, city_dropdown, {selected: params[:city_id]}, {autofocus: true, class: "form-control", style: "width:50%"} %><br/>
-      </div>
-    </div>
-  <div>
-  <div class="row title2">
-    <div class="col-md-offset-4 col-md-4">
-      <div class="actions">
+        <div class="row title2">
+          <div class="col-md-offset-4 col-md-4">
+            <div class="actions">
               <%= f.submit "Sign up",class: "btn btn-danger", redirect: new_registration_path(resource_name) %>
-      </div>
-    </div>
-  </div>
+            </div>
+          </div>
+        </div>
       <% end %>
-  </div>
+      <br><br>
+    </div>
+  <% end %>
 </div>
-

@@ -1,14 +1,10 @@
-<p id="notice" xmlns:width="http://www.w3.org/1999/xhtml"><%= notice %></p>
-<div class="trend">
-
-<h1>Crude Oil and Gas Prices Trend</h1>
-
+<div class="trend parallax-window">
+<h1 class="bluepanel" style="margin-bottom:50px; margin-top:50px">Crude Oil and Gas Prices Trend</h1>
 <div class="graph" style="width:80%">
-
 <% oil_data = @oil_prices.select{|a| a.date > Date.today-30}.sort{|a,b| a.date <=> b.date} %>
 <% gas_data = @gas_prices.select{|a| a.date > Date.today-30}.sort{|a,b| a.date <=> b.date} %>
-<% cd_data = [{name: 'Oil Price', data: oil_data.map{|x| [x.date, x.oil_price] }}] %>
-<% cd_data << {name: 'Gas Price', data: gas_data.map{|x| [x.date, x.gas_price] }}%>
+<% cd_data = [{name: 'Oil Price', data: oil_data.map{|x| [x.date + 8.hours, x.oil_price] }}] %>
+<% cd_data << {name: 'Gas Price', data: gas_data.map{|x| [x.date + 8.hours, x.gas_price] }}%>
 <% min_oil = cd_data[0][:data].map{|x|x[1]}.min * 0.99 %>
 <% min_gas = cd_data[1][:data].map{|x|x[1]}.min * 0.99 %>
 <%= line_chart cd_data,
@@ -33,5 +29,3 @@
 %>
 </div>
 </div>
-
-
