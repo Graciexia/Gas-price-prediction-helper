@@ -1,6 +1,8 @@
 require 'csv'
 
-["Regular","Midgrade","Premium"].each do |type|
+gas_grade_array = ["Regular","Midgrade","Premium"]
+
+gas_grade_array.each do |type|
   GasGrade.find_or_create_by(grade_name: type)
 end
 
@@ -13,16 +15,25 @@ CSV.foreach("lib/assets/vehicles_short.csv") do |row|
   model = row[5].to_s
   trany = row[6].to_s
   year = row[7].to_i
-  Car.find_or_create_by(
-      city_mileage: city_mileage,
-      comb_mileage: comb_mileage,
-      highway_mileage: highway_mileage,
-      make: make,
-      model: model,
-      trany: trany,
-      year: year,
-      gas_grade: GasGrade.find_by_grade_name(gas_grade_lookup)
-      )
+  if ! gas_grade_lookup.include? 'Electricity'
+    gas_grade_lookup = 'Premium' if gas_grade_lookup.include? 'E85'
+    gas_grade_lookup = 'Regular' if gas_grade_lookup[0..2] == 'Gas'
+    if gas_grade_array.include?(gas_grade_lookup)
+      if trany == nil || trany.strip == ''
+        trany = '<not specified>'
+      end
+      Car.find_or_create_by(
+          city_mileage: city_mileage,
+          comb_mileage: comb_mileage,
+          highway_mileage: highway_mileage,
+          make: make,
+          model: model,
+          trany: trany,
+          year: year,
+          gas_grade: GasGrade.find_by_grade_name(gas_grade_lookup)
+          )
+    end
+  end
 end
 
 GasPrice.k_update_gas_data
