@@ -70,7 +70,10 @@ class GasPrice < ActiveRecord::Base
               # now put the data in the DB
               city = City.find_or_create_by(name: metro_area, state: state_abbr)
               gas_grade = GasGrade.find_by(grade_name: grade_name)
-              GasPrice.find_or_create_by(date: price_date, gas_price: price, city_id: city.id, gas_grade_id: gas_grade.id)
+              gas_price = GasPrice.find_by(date: price_date, city_id: city.id, gas_grade_id: gas_grade.id)
+              if gas_price == nil
+                GasPrice.create(date: price_date, gas_price: price, city_id: city.id, gas_grade_id: gas_grade.id)
+              end
             end
           end
         end

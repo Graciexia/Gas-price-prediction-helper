@@ -35,4 +35,12 @@ class OilPrice < ActiveRecord::Base
       OilPrice.find_or_create_by(oil_price: get_price, date: get_date)
     end
   end
+
+  def self.my_update_gusbbudy_data
+    url = 'http://www.gasbuddy.com/'
+    puts "using my_update_gusbbudy_data"
+    doc = Nokogiri::HTML(open(ulr))
+
+
+  end
 end
