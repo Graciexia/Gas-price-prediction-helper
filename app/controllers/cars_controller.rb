@@ -32,7 +32,6 @@ class CarsController < ApplicationController
     @city_name = current_user.city.name
   end
 
-  # GET /cars/new
   def new
     if current_user.car != nil
       redirect_to edit_car_path
@@ -45,7 +44,7 @@ class CarsController < ApplicationController
     end
   end
 
-  # GET /cars/1/edit
+
   def edit
     if current_user.car == nil
       redirect_to new_car_path
@@ -62,8 +61,7 @@ class CarsController < ApplicationController
     end
   end
 
-  # POST /cars
-  # POST /cars.json
+
   def create
     year = params[:car][:year]
     make = params[:car][:make]
@@ -74,29 +72,16 @@ class CarsController < ApplicationController
     respond_to do |format|
       if current_user.save
         format.html { redirect_to gas_prices_path, notice: 'Your car profile was successfully updated.' }
-        format.json { render :show, status: :created, location: @car }
       else
         format.html { render :new }
-        format.json { render json: @car.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /cars/1
-  # PATCH/PUT /cars/1.json
   def update
     self.create
   end
 
-  # DELETE /cars/1
-  # DELETE /cars/1.json
-  def destroy
-    @car.destroy
-    respond_to do |format|
-      format.html { redirect_to cars_url, notice: 'Car was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
 
   def update_makes
     year = params[:year]
@@ -126,12 +111,10 @@ class CarsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_car
       @car = Car.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def car_params
       params.require(:car).permit(:gas_grade_id, :vehicle_type)
     end
