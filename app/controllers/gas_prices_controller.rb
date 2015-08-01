@@ -89,52 +89,6 @@ class GasPricesController < ApplicationController
     return gas_change_percentage_prediction, current_gas_price
   end
 
-# since the data is pulled from intenet,these follwing function wont be used
-  # def edit
-  # end
+# since the data is pulled from intenet,CRUD function wont be used
 
-  # def create
-  #   @gas_price = GasPrice.new(gas_price_params)
-
-  #   respond_to do |format|
-  #     if @gas_price.save
-  #       format.html { redirect_to @gas_price, notice: 'Gas price was successfully created.' }
-  #       format.json { render :show, status: :created, location: @gas_price }
-  #     else
-  #       format.html { render :new }
-  #       format.json { render json: @gas_price.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
-  # def update
-  #   respond_to do |format|
-  #     if @gas_price.update(gas_price_params)
-  #       format.html { redirect_to @gas_price, notice: 'Gas price was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @gas_price }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @gas_price.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
-
-  # def destroy
-  #   @gas_price.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to gas_prices_url, notice: 'Gas price was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
-
-  # private
-
-  #   def set_gas_price
-  #     @gas_price = GasPrice.find(params[:id])
-  #   end
-
-  #   def gas_price_params
-  #     params.require(:gas_price).permit(:daily_price, :gas_type)
-  #   end
 end

@@ -5,8 +5,6 @@ class OilPricesController < ApplicationController
     redirect_to new_car_path if (current_user.car == nil)
   end
 
-  # GET /oil_prices
-  # GET /oil_prices.json
   def index
     @oil_prices = OilPrice.all
     city_id = current_user.city_id
@@ -15,9 +13,4 @@ class OilPricesController < ApplicationController
   end
 
 
-private
-
-  def oil_price_params
-    params.require(:oil_price).permit(:daily_oil_price, :date)
-  end
 end
