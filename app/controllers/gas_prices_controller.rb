@@ -78,7 +78,7 @@ class GasPricesController < ApplicationController
     puts "oil change percentage = #{oil_change_percentage}"
     puts "gas change percentage = #{gas_change_percentage}"
     delta = (oil_change_percentage - gas_change_percentage) * multiplier
-    gas_change_percentage_prediction = (gas_change_percentage + delta) / change_days.to_f.abs
+    gas_change_percentage_prediction = ((gas_change_percentage + delta) / change_days.to_f.abs).round(4)
     current_gas_price_obj = get_gas_price_obj(Date.today, city_id, gas_grade_id)
     if current_gas_price_obj == nil
       current_gas_price = 0.0

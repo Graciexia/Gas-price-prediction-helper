@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'net/https'
 require 'nokogiri'
 require 'open-uri'
 require 'csv'
