@@ -64,6 +64,7 @@ class GasPrice < ActiveRecord::Base
         doc.css('.accordion-prices h3').each_with_index do |element, metro_area_index|
           metro_area = element.text
 # get to mobile prices (current day only)
+# doc.css('.accordion-prices .mobil-content')[0].css('table tr')[0].css('td')[1]
           [current_date, yesterday_date].each_with_index do |price_date, tr_child_offset|
             tr_element = element.next_element.css('table')[0].css('tbody tr')[tr_child_offset]
             ['Regular','Midgrade','Premium'].each_with_index do |grade_name, td_child_offset|
