@@ -6,29 +6,27 @@ class CarsController < ApplicationController
     if current_user.car == nil
       redirect_to new_car_path
     else
-      current_id = current_user.car_id
-      @user_car = Car.find(current_id)
+      @user_car = current_user.car
       @city_mileage = @user_car.city_mileage
       @highway_mileage = @user_car.highway_mileage
       @comb_mileage = @user_car.comb_mileage
       city_id = current_user.city_id
-      gas_grade_id = current_user.car.gas_grade_id
-      @grade_name = current_user.car.gas_grade.grade_name
+      gas_grade_id = @user_car.gas_grade_id
+      @grade_name = @user_car.gas_grade.grade_name
       @car_name = "#{@user_car.year.to_s} #{@user_car.make} #{@user_car.model} (#{@user_car.trany})"
       date = Date.today
       gas_price_obj = GasPrice.where('date <= ? and city_id = ? and gas_grade_id = ?',
                                      date, city_id, gas_grade_id)
       @user_gas_price = gas_price_obj.first.gas_price || 0.0
       @sipper_gas_price = GasPrice.find_by('date <= ? and city_id = ? and gas_grade_id = ?',
-                                     date, city_id, 1).gas_price || 0.0
+                                           date, city_id, 1).gas_price || 0.0
       @guzzler_gas_price = GasPrice.find_by('date <= ? and city_id = ? and gas_grade_id = ?',
-                                           date, city_id, 3).gas_price || 0.0
+                                            date, city_id, 3).gas_price || 0.0
     end
   end
 
   def show
-    current_id = current_user.car_id
-    @car = Car.find(current_id)
+    @car = current_user.car
     @city_name = current_user.city.name
   end
 
@@ -111,11 +109,11 @@ class CarsController < ApplicationController
   end
 
   private
-    def set_car
-      @car = Car.find(params[:id])
-    end
+  def set_car
+    @car = Car.find(params[:id])
+  end
 
-    def car_params
-      params.require(:car).permit(:gas_grade_id, :vehicle_type)
-    end
+  def car_params
+    params.require(:car).permit(:gas_grade_id, :vehicle_type)
+  end
 end
