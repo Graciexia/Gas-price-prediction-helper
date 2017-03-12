@@ -105,9 +105,6 @@ class CarsController < ApplicationController
     @tranies.insert(0,'Select transmission...')
   end
 
-  def update_submit
-  end
-
   private
   def set_car
     @car = Car.find(params[:id])

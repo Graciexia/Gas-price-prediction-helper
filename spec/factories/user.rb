@@ -29,8 +29,8 @@ FactoryGirl.define do
     name "wei"
     city_id 1
 
-    trait :with_car do
-      car_id 1
-    end
+    # trait :with_car do
+    #   car_id 1
+    # end
   end
 end
