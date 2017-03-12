@@ -1,4 +1,5 @@
 class CarsController < ApplicationController
+  include CarsHelper
   before_action :set_car, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
 
@@ -15,13 +16,9 @@ class CarsController < ApplicationController
       @grade_name = @user_car.gas_grade.grade_name
       @car_name = "#{@user_car.year.to_s} #{@user_car.make} #{@user_car.model} (#{@user_car.trany})"
       date = Date.today
-      gas_price_obj = GasPrice.where('date <= ? and city_id = ? and gas_grade_id = ?',
-                                     date, city_id, gas_grade_id)
-      @user_gas_price = gas_price_obj.first.gas_price || 0.0
-      @sipper_gas_price = GasPrice.find_by('date <= ? and city_id = ? and gas_grade_id = ?',
-                                           date, city_id, 1).gas_price || 0.0
-      @guzzler_gas_price = GasPrice.find_by('date <= ? and city_id = ? and gas_grade_id = ?',
-                                            date, city_id, 3).gas_price || 0.0
+      @user_gas_price = calculate_gas_price(date, city_id, gas_grade_id)
+      @sipper_gas_price = calculate_gas_price(date, city_id, find_sipper_gas_grade_id)
+      @guzzler_gas_price = calculate_gas_price(date, city_id, find_guzzler_gas_grade_id)
     end
   end
 
