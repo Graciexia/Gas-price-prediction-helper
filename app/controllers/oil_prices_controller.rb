@@ -11,6 +11,4 @@ class OilPricesController < ApplicationController
     gas_grade_id = current_user.car.gas_grade_id
     @gas_prices = GasPrice.where(city_id: city_id, gas_grade_id: gas_grade_id).select('date as "date"', :gas_price)
   end
-
-
 end
