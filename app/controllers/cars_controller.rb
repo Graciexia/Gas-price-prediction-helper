@@ -29,7 +29,7 @@ class CarsController < ApplicationController
 
   def new
     if current_user.car != nil
-      redirect_to edit_car_path
+      redirect_to edit_car_path current_user.car.id
     else
       @car = Car.new   # @cost = pramas[:miles]/@comb_mileage * @pgp
       @years = ['Select year...'] + Car.uniq.pluck(:year).sort

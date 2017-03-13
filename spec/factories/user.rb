@@ -22,12 +22,10 @@
 
 FactoryGirl.define do
   factory :user do
-    email "isatest@abc.com"
     password "12345678"
     password_confirmation "12345678"
     admin false
     name "wei"
-    city_id 1
 
     # trait :with_car do
     #   car_id 1

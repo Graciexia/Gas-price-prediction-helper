@@ -1,4 +1,4 @@
-module CarsHelper
+ module CarsHelper
   def calculate_gas_price(date, city_id, gas_grade_id)
     GasPrice.where('date <= ? and city_id = ? and gas_grade_id = ?',
                    date, city_id, gas_grade_id).first.gas_price || 0.0
